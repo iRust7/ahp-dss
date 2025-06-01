@@ -1,0 +1,233 @@
+/* Custom styles for AHP Decision Support System */
+
+/* Smooth animations */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Matrix table styling */
+.matrix-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.matrix-table th,
+.matrix-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.matrix-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+}
+
+.matrix-table input {
+    width: 80px;
+    padding: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.matrix-table input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Diagonal cells (always 1) */
+.diagonal-cell {
+    background-color: #f3f4f6 !important;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Lower triangle cells (auto-calculated) */
+.auto-cell {
+    background-color: #fef3c7 !important;
+    color: #92400e;
+}
+
+/* Results table styling */
+.results-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    text-align: left;
+}
+
+.results-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #334155;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.results-table tr:hover {
+    background-color: #e2e8f0;
+}
+
+/* Ranking badges */
+.rank-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    min-width: 30px;
+}
+
+.rank-1 {
+    background-color: #fbbf24;
+    color: #92400e;
+}
+
+.rank-2 {
+    background-color: #d1d5db;
+    color: #374151;
+}
+
+.rank-3 {
+    background-color: #fca5a5;
+    color: #991b1b;
+}
+
+/* Score bars */
+.score-bar {
+    height: 20px;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.score-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 10px;
+    transition: width 0.8s ease;
+}
+
+/* Criteria/Alternative management */
+.criteria-item,
+.alternative-item {
+    display: flex;
+    align-items: center;
+    justify-content: between;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+.criteria-item input,
+.alternative-item input {
+    border: none;
+    background: transparent;
+    flex: 1;
+    padding: 4px;
+    font-weight: 500;
+}
+
+.criteria-item input:focus,
+.alternative-item input:focus {
+    outline: none;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.delete-btn {
+    color: #dc2626;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: #fee2e2;
+}
+
+/* Consistency indicators */
+.consistency-good {
+    color: #059669;
+    background-color: #d1fae5;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #a7f3d0;
+}
+
+.consistency-warning {
+    color: #d97706;
+    background-color: #fef3c7;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #fcd34d;
+}
+
+.consistency-bad {
+    color: #dc2626;
+    background-color: #fee2e2;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #fca5a5;
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .matrix-table input {
+        width: 60px;
+        font-size: 12px;
+        padding: 4px;
+    }
+    
+    .results-table th,
+    .results-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+    }
+    
+    .bg-white {
+        box-shadow: none !important;
+    }
+}
