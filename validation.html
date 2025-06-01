@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AHP System Validation</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>AHP Decision Support System - Comprehensive Validation</h1>
+    
+    <div id="test-results">
+        <div class="test-section">
+            <h2>🧪 Running validation tests...</h2>
+            <div id="progress"></div>
+        </div>
+    </div>
+    
+    <script src="ahp.js"></script>
+    <script>
+        const results = document.getElementById('test-results');
+        const progress = document.getElementById('progress');
+        
+        function addResult(title, content, status = 'info') {
+            const section = document.createElement('div');
+            section.className = 'test-section';
+            section.innerHTML = `<h3 class="${status}">${title}</h3><div>${content}</div>`;
+            results.appendChild(section);
+        }
+        
+        function runTests() {
+            let testCount = 0;
+            let passCount = 0;
+            
+            try {
+                // Test 1: AHP Calculator Creation
+                testCount++;
+                const calc = new AHPCalculator();
+                passCount++;
+                addResult('✅ Test 1: AHP Calculator Creation', 'AHPCalculator instance created successfully', 'success');
+                
+                // Test 2: Criteria and Alternatives Setup
+                testCount++;
+                const criteria = ['Distance', 'Cost', 'Facilities', 'Geographic Position', 'Warehouse Area'];
+                const alternatives = ['Safe\'n Lock', 'Rungkut Industri', 'SPILL'];
+                calc.setCriteria(criteria);
+                calc.setAlternatives(alternatives);
+                passCount++;
+                addResult('✅ Test 2: Criteria and Alternatives Setup', 
+                    `Criteria: ${criteria.join(', ')}<br>Alternatives: ${alternatives.join(', ')}`, 'success');
+                
+                // Test 3: Matrix Completion
+                testCount++;
+                const testMatrix = [
+                    [1, 2, 3],
+                    [0, 1, 4],
+                    [0, 0, 1]
+                ];
+                const completed = calc.completeMatrix(testMatrix);
+                const isValidReciprocal = Math.abs(completed[1][0] - 0.5) < 0.001;
+                if (isValidReciprocal) {
+                    passCount++;
+                    addResult('✅ Test 3: Matrix Completion', 
+                        `Original: [0,1,4] → Completed: [${completed[1].map(x => x.toFixed(3)).join(', ')}]<br>Reciprocal validation: ${completed[1][0]} ≈ 0.5`, 'success');
+                } else {
+                    addResult('❌ Test 3: Matrix Completion', 'Reciprocal calculation failed', 'error');
+                }
+                
+                // Test 4: Eigenvalue Calculation
+                testCount++;
+                const weights = calc.calculateEigenVector(completed);
+                const weightSum = weights.reduce((a, b) => a + b, 0);
+                const validWeightSum = Math.abs(weightSum - 1.0) < 0.001;
+                if (validWeightSum && weights.length === 3) {
+                    passCount++;
+                    addResult('✅ Test 4: Eigenvalue Calculation', 
+                        `Weights: [${weights.map(w => w.toFixed(4)).join(', ')}]<br>Sum: ${weightSum.toFixed(6)} ≈ 1.0`, 'success');
+                } else {
+                    addResult('❌ Test 4: Eigenvalue Calculation', 
+                        `Invalid weights or sum. Got: [${weights.join(', ')}], Sum: ${weightSum}`, 'error');
+                }
+                
+                // Test 5: Consistency Check
+                testCount++;
+                const consistency = calc.calculateConsistency(completed, weights);
+                if (consistency && typeof consistency.CR === 'number') {
+                    passCount++;
+                    addResult('✅ Test 5: Consistency Check', 
+                        `CI: ${consistency.CI.toFixed(4)}<br>CR: ${consistency.CR.toFixed(4)}<br>Status: ${consistency.CR < 0.1 ? 'Consistent' : 'Inconsistent'}`, 'success');
+                } else {
+                    addResult('❌ Test 5: Consistency Check', 'Consistency calculation failed', 'error');
+                }
+                
+                // Test 6: Full AHP Process Simulation
+                testCount++;
+                
+                // Set up criteria matrix (5x5)
+                const criteriaMatrix = [
+                    [1, 0.2, 0.33, 0.5, 0.25],
+                    [5, 1, 3, 2, 0.5],
+                    [3, 0.33, 1, 2, 0.33],
+                    [2, 0.5, 0.5, 1, 0.25],
+                    [4, 2, 3, 4, 1]
+                ];
+                calc.setCriteriaMatrix(criteriaMatrix);
+                
+                // Set up alternative matrices (3x3 each)
+                const altMatrices = {
+                    'Distance': [
+                        [1, 3, 5],
+                        [0.33, 1, 3],
+                        [0.2, 0.33, 1]
+                    ],
+                    'Cost': [
+                        [1, 0.5, 0.33],
+                        [2, 1, 0.5],
+                        [3, 2, 1]
+                    ],
+                    'Facilities': [
+                        [1, 2, 3],
+                        [0.5, 1, 2],
+                        [0.33, 0.5, 1]
+                    ],
+                    'Geographic Position': [
+                        [1, 3, 2],
+                        [0.33, 1, 0.5],
+                        [0.5, 2, 1]
+                    ],
+                    'Warehouse Area': [
+                        [1, 0.5, 2],
+                        [2, 1, 3],
+                        [0.5, 0.33, 1]
+                    ]
+                };
+                
+                criteria.forEach(criterion => {
+                    calc.setAlternativeMatrix(criterion, altMatrices[criterion]);
+                });
+                
+                // Calculate complete results
+                const fullResults = calc.calculateResults();
+                
+                if (fullResults && fullResults.finalScores && fullResults.finalScores.length === 3) {
+                    passCount++;
+                    
+                    // Create results table
+                    let resultTable = '<table><tr><th>Alternative</th><th>Score</th><th>Rank</th></tr>';
+                    fullResults.finalScores.forEach((score, index) => {
+                        resultTable += `<tr><td>${alternatives[index]}</td><td>${score.toFixed(4)}</td><td>${index + 1}</td></tr>`;
+                    });
+                    resultTable += '</table>';
+                    
+                    addResult('✅ Test 6: Full AHP Process', 
+                        `Complete AHP calculation successful!<br>${resultTable}<br>Winner: ${alternatives[fullResults.finalScores.indexOf(Math.max(...fullResults.finalScores))]}`, 'success');
+                } else {
+                    addResult('❌ Test 6: Full AHP Process', 'Full AHP calculation failed', 'error');
+                }
+                
+                // Test 7: Data Validation
+                testCount++;
+                const invalidMatrix = [
+                    [1, 0, 3],
+                    [0.5, 1, 2],
+                    [0.33, 0.5, 1]
+                ];
+                
+                try {
+                    const validated = calc.validateMatrix(invalidMatrix);
+                    if (!validated.isValid) {
+                        passCount++;
+                        addResult('✅ Test 7: Data Validation', 
+                            `Correctly detected invalid matrix: ${validated.errors.join(', ')}`, 'success');
+                    } else {
+                        addResult('❌ Test 7: Data Validation', 'Failed to detect invalid matrix', 'error');
+                    }
+                } catch (e) {
+                    addResult('❌ Test 7: Data Validation', `Validation error: ${e.message}`, 'error');
+                }
+                
+                // Summary
+                const successRate = (passCount / testCount * 100).toFixed(1);
+                const summaryClass = passCount === testCount ? 'success' : (passCount > testCount * 0.8 ? 'info' : 'error');
+                addResult(`📊 Test Summary: ${passCount}/${testCount} tests passed (${successRate}%)`, 
+                    `${passCount === testCount ? 'All systems operational! 🚀' : 'Some issues detected, review failed tests above.'}`, summaryClass);
+                
+            } catch (error) {
+                addResult('❌ Critical Error', `Unexpected error during testing: ${error.message}<br>Stack: ${error.stack}`, 'error');
+            }
+        }
+        
+        // Run tests when page loads
+        progress.innerHTML = 'Initializing tests...';
+        setTimeout(() => {
+            progress.innerHTML = 'Tests completed!';
+            runTests();
+        }, 500);
+    </script>
+</body>
+</html>
