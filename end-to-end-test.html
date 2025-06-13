@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHP Enhanced System - End-to-End Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .test-success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .test-error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .test-info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">🧪 AHP Enhanced System - End-to-End Test</h1>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">Test Progress</h2>
+                <button onclick="runAllTests()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    🚀 Run All Tests
+                </button>
+            </div>
+            <div id="progress" class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+                <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <div id="test-summary" class="text-sm text-gray-600">Ready to start testing...</div>
+        </div>
+
+        <div id="test-results" class="space-y-4">
+            <!-- Test results will be inserted here -->
+        </div>
+    </div>
+
+    <script src="ahp.js"></script>
+    <script>
+        let testCount = 0;
+        let passCount = 0;
+        let currentTest = 0;
+
+        function addTestResult(title, description, type) {
+            const resultsDiv = document.getElementById('test-results');
+            const testDiv = document.createElement('div');
+            testDiv.className = `test-result test-${type}`;
+            testDiv.innerHTML = `
+                <h3><strong>${title}</strong></h3>
+                <p>${description}</p>
+            `;
+            resultsDiv.appendChild(testDiv);
+            
+            // Update progress
+            currentTest++;
+            const progress = (currentTest / testCount) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+            
+            if (type === 'success') passCount++;
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summary = document.getElementById('test-summary');
+            if (currentTest === testCount) {
+                const successRate = ((passCount / testCount) * 100).toFixed(1);
+                summary.innerHTML = `
+                    <strong>Tests Completed!</strong> 
+                    ${passCount}/${testCount} passed (${successRate}% success rate)
+                    ${passCount === testCount ? ' 🎉' : ' ⚠️'}
+                `;
+            } else {
+                summary.innerHTML = `Running tests... ${currentTest}/${testCount} completed`;
+            }
+        }
+
+        async function runAllTests() {
+            // Reset counters
+            testCount = 15; // Total number of tests
+            currentTest = 0;
+            passCount = 0;
+            document.getElementById('test-results').innerHTML = '';
+            document.getElementById('progress-bar').style.width = '0%';
+            
+            addTestResult('🔧 Test 1: AHP Calculator Initialization', 'Testing basic calculator setup...', 'info');
+            
+            try {
+                // Test 1: Basic initialization
+                const calc = new AHPCalculator();
+                addTestResult('✅ Test 1: AHP Calculator Initialization', 'AHPCalculator created successfully', 'success');
+                
+                // Test 2: Criteria and alternatives setup
+                const criteria = ['Jarak', 'Biaya', 'Fasilitas', 'Posisi Geografis', 'Luas Gudang'];
+                const alternatives = ['Safe\'n Lock', 'Rungkut Industri', 'SPILL'];
+                calc.setCriteria(criteria);
+                calc.setAlternatives(alternatives);
+                addTestResult('✅ Test 2: Criteria and Alternatives Setup', 
+                    `Criteria: ${criteria.join(', ')}<br>Alternatives: ${alternatives.join(', ')}`, 'success');
+                
+                // Test 3: Matrix completion functionality
+                const testMatrix = [
+                    [1, 2, 3],
+                    [0, 1, 4],
+                    [0, 0, 1]
+                ];
+                const completed = calc.completeMatrix(testMatrix);
+                const isValidReciprocal = Math.abs(completed[1][0] - 0.5) < 0.001;
+                if (isValidReciprocal) {
+                    addTestResult('✅ Test 3: Matrix Completion', 
+                        'Matrix reciprocal values calculated correctly', 'success');
+                } else {
+                    addTestResult('❌ Test 3: Matrix Completion', 
+                        'Matrix reciprocal calculation failed', 'error');
+                }
+                
+                // Test 4: Enhanced features check
+                if (typeof initializeEnhancements === 'function') {
+                    addTestResult('✅ Test 4: Enhanced Features Available', 
+                        'initializeEnhancements function is available', 'success');
+                } else {
+                    addTestResult('❌ Test 4: Enhanced Features Available', 
+                        'initializeEnhancements function not found', 'error');
+                }
+                
+                // Test 5: Mobile navigation functions
+                if (typeof initializeMobileMenu === 'function' && typeof scrollToSection === 'function') {
+                    addTestResult('✅ Test 5: Mobile Navigation Functions', 
+                        'Mobile navigation functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 5: Mobile Navigation Functions', 
+                        'Mobile navigation functions not found', 'error');
+                }
+                
+                // Test 6: Chart creation functions
+                if (typeof createEnhancedCriteriaChart === 'function' && typeof createEnhancedScoresChart === 'function') {
+                    addTestResult('✅ Test 6: Enhanced Chart Functions', 
+                        'Enhanced chart creation functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 6: Enhanced Chart Functions', 
+                        'Enhanced chart functions not found', 'error');
+                }
+                
+                // Test 7: Data collection functions
+                if (typeof collectCriteriaMatrixData === 'function' && typeof collectAlternativeMatrixData === 'function') {
+                    addTestResult('✅ Test 7: Data Collection Functions', 
+                        'Data collection functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 7: Data Collection Functions', 
+                        'Data collection functions not found', 'error');
+                }
+                
+                // Test 8: Display functions
+                if (typeof displayResults === 'function' && typeof displayCriteriaWeights === 'function' && 
+                    typeof displayAlternativeScores === 'function' && typeof displayConsistencyResults === 'function') {
+                    addTestResult('✅ Test 8: Display Functions', 
+                        'All display functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 8: Display Functions', 
+                        'Some display functions not found', 'error');
+                }
+                
+                // Test 9: Export and print functions
+                if (typeof exportResults === 'function' && typeof printResults === 'function') {
+                    addTestResult('✅ Test 9: Export/Print Functions', 
+                        'Export and print functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 9: Export/Print Functions', 
+                        'Export/print functions not found', 'error');
+                }
+                
+                // Test 10: Auto-save and localStorage functions
+                if (typeof saveToLocalStorage === 'function' && typeof debouncedSave === 'function') {
+                    addTestResult('✅ Test 10: Auto-save Functions', 
+                        'Auto-save and localStorage functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 10: Auto-save Functions', 
+                        'Auto-save functions not found', 'error');
+                }
+                
+                // Test 11: Enhanced message system
+                if (typeof showMessage === 'function') {
+                    addTestResult('✅ Test 11: Enhanced Message System', 
+                        'Enhanced message display function is available', 'success');
+                } else {
+                    addTestResult('❌ Test 11: Enhanced Message System', 
+                        'Enhanced message function not found', 'error');
+                }
+                
+                // Test 12: Process AHP function
+                if (typeof processAHP === 'function') {
+                    addTestResult('✅ Test 12: Main AHP Processing Function', 
+                        'processAHP function is available', 'success');
+                } else {
+                    addTestResult('❌ Test 12: Main AHP Processing Function', 
+                        'processAHP function not found', 'error');
+                }
+                
+                // Test 13: Default data loading
+                if (typeof loadDefaultData === 'function') {
+                    addTestResult('✅ Test 13: Default Data Loading', 
+                        'loadDefaultData function is available with enhanced feedback', 'success');
+                } else {
+                    addTestResult('❌ Test 13: Default Data Loading', 
+                        'loadDefaultData function not found', 'error');
+                }
+                
+                // Test 14: Matrix validation and completeness
+                if (typeof calculateMatrixCompleteness === 'function' && typeof validateMatrixInput === 'function') {
+                    addTestResult('✅ Test 14: Matrix Validation System', 
+                        'Matrix validation and completeness functions are available', 'success');
+                } else {
+                    addTestResult('❌ Test 14: Matrix Validation System', 
+                        'Matrix validation functions not found', 'error');
+                }
+                
+                // Test 15: Complete AHP calculation with default data
+                addTestResult('🔧 Test 15: Full AHP Calculation', 'Testing complete AHP process...', 'info');
+                
+                // Set up full calculation with default data
+                const criteriaMatrix = [
+                    [1, 0.2, 0.33, 0.5, 0.25],
+                    [5, 1, 3, 2, 0.5],
+                    [3, 0.33, 1, 2, 0.33],
+                    [2, 0.5, 0.5, 1, 0.25],
+                    [4, 2, 3, 4, 1]
+                ];
+                calc.setCriteriaMatrix(criteriaMatrix);
+                
+                const altMatrices = {
+                    'Jarak': [
+                        [1, 3, 5],
+                        [0.33, 1, 3],
+                        [0.2, 0.33, 1]
+                    ],
+                    'Biaya': [
+                        [1, 0.5, 0.33],
+                        [2, 1, 0.5],
+                        [3, 2, 1]
+                    ],
+                    'Fasilitas': [
+                        [1, 2, 3],
+                        [0.5, 1, 2],
+                        [0.33, 0.5, 1]
+                    ],
+                    'Posisi Geografis': [
+                        [1, 3, 2],
+                        [0.33, 1, 0.5],
+                        [0.5, 2, 1]
+                    ],
+                    'Luas Gudang': [
+                        [1, 0.5, 2],
+                        [2, 1, 3],
+                        [0.5, 0.33, 1]
+                    ]
+                };
+                
+                criteria.forEach(criterion => {
+                    calc.setAlternativeMatrix(criterion, altMatrices[criterion]);
+                });
+                
+                const results = calc.calculate();
+                
+                if (results && results.success && results.finalScores && results.finalScores.length === 3) {
+                    const winner = results.finalScores[0];
+                    addTestResult('✅ Test 15: Full AHP Calculation', 
+                        `Complete AHP calculation successful!<br>
+                         Winner: ${winner.name} (Score: ${winner.score.toFixed(4)})<br>
+                         Criteria Consistency: ${results.consistency.criteria.cr <= 0.1 ? 'Valid' : 'Invalid'} (CR: ${results.consistency.criteria.cr.toFixed(4)})`, 'success');
+                } else {
+                    addTestResult('❌ Test 15: Full AHP Calculation', 
+                        'Full AHP calculation failed: ' + (results.error || 'Unknown error'), 'error');
+                }
+                
+            } catch (error) {
+                addTestResult('❌ Error in Testing', 'Test execution failed: ' + error.message, 'error');
+                console.error('Test error:', error);
+                
+                // Fill remaining tests as errors
+                while (currentTest < testCount) {
+                    addTestResult('❌ Test Skipped', 'Skipped due to previous error', 'error');
+                }
+            }
+        }
+
+        // Auto-run tests when page loads
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 1000);
+        });
+    </script>
+</body>
+</html>

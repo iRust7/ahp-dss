@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 AHP Enhanced Features Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .demo-card {
+            transition: all 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .feature-badge {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-6 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                🎮 AHP Enhanced Features Demo
+            </h1>
+            <p class="text-xl text-gray-600">
+                Showcase of all the enhanced features implemented in the AHP Decision Support System
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <a href="index.html" class="demo-card bg-white rounded-xl shadow-lg p-6 text-center block hover:no-underline">
+                <div class="text-3xl mb-4">🎯</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Main Application</h3>
+                <p class="text-gray-600">Experience the full enhanced AHP system</p>
+            </a>
+            
+            <a href="end-to-end-test.html" class="demo-card bg-white rounded-xl shadow-lg p-6 text-center block hover:no-underline">
+                <div class="text-3xl mb-4">🧪</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">System Tests</h3>
+                <p class="text-gray-600">Comprehensive testing of all features</p>
+            </a>
+            
+            <a href="validation.html" class="demo-card bg-white rounded-xl shadow-lg p-6 text-center block hover:no-underline">
+                <div class="text-3xl mb-4">✅</div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Core Validation</h3>
+                <p class="text-gray-600">Validate AHP calculation accuracy</p>
+            </a>
+        </div>
+
+        <!-- Enhanced Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Mobile Navigation -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Mobile Navigation</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Fully responsive mobile navigation with smooth scrolling between sections.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Hamburger menu<br>
+                    ✅ Section navigation<br>
+                    ✅ Touch-friendly interface
+                </div>
+            </div>
+
+            <!-- Keyboard Shortcuts -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Keyboard Shortcuts</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Power user features with keyboard shortcuts for quick actions.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Ctrl+D: Load default data<br>
+                    ✅ Ctrl+Enter: Process calculation<br>
+                    ✅ Enhanced productivity
+                </div>
+            </div>
+
+            <!-- Auto-save -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-save"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Auto-save</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Automatic data persistence with localStorage integration.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Automatic saving<br>
+                    ✅ Data recovery<br>
+                    ✅ Session persistence
+                </div>
+            </div>
+
+            <!-- Enhanced Charts -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Enhanced Charts</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Professional visualizations with mobile optimization.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Responsive design<br>
+                    ✅ Loading animations<br>
+                    ✅ Interactive tooltips
+                </div>
+            </div>
+
+            <!-- Progress Tracking -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Progress Tracking</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Real-time tracking of matrix completion and validation.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Completion percentage<br>
+                    ✅ Visual indicators<br>
+                    ✅ Real-time validation
+                </div>
+            </div>
+
+            <!-- Export & Print -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Export & Print</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Professional reporting with multiple export options.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ JSON export<br>
+                    ✅ Print formatting<br>
+                    ✅ Comprehensive reports
+                </div>
+            </div>
+
+            <!-- Matrix Validation -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Matrix Validation</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Advanced validation with consistency preview and error handling.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Real-time validation<br>
+                    ✅ Consistency preview<br>
+                    ✅ Smart suggestions
+                </div>
+            </div>
+
+            <!-- Enhanced Messages -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Enhanced Messages</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Beautiful floating notifications with auto-dismiss functionality.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Floating design<br>
+                    ✅ Auto-dismiss<br>
+                    ✅ Color-coded types
+                </div>
+            </div>
+
+            <!-- Default Data -->
+            <div class="demo-card bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="feature-badge text-white p-3 rounded-lg mr-3">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Enhanced Default Data</h3>
+                </div>
+                <p class="text-gray-600 mb-4">Improved default data loading with progress feedback.</p>
+                <div class="text-sm text-blue-600">
+                    ✅ Progress tracking<br>
+                    ✅ Visual feedback<br>
+                    ✅ Error handling
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Start Guide -->
+        <div class="mt-12 bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+                🚀 Quick Start Guide
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-3xl mb-3">1️⃣</div>
+                    <h3 class="font-bold text-gray-800 mb-2">Open Main App</h3>
+                    <p class="text-sm text-gray-600">Click on "Main Application" to start using the enhanced AHP system</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-3xl mb-3">2️⃣</div>
+                    <h3 class="font-bold text-gray-800 mb-2">Load Default Data</h3>
+                    <p class="text-sm text-gray-600">Press Ctrl+D or click "Muat Data Default" to populate with sample data</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-3xl mb-3">3️⃣</div>
+                    <h3 class="font-bold text-gray-800 mb-2">Process Calculation</h3>
+                    <p class="text-sm text-gray-600">Press Ctrl+Enter or click "Proses Perhitungan AHP" to see results</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-3xl mb-3">4️⃣</div>
+                    <h3 class="font-bold text-gray-800 mb-2">Explore Features</h3>
+                    <p class="text-sm text-gray-600">Try mobile view, export options, and interactive charts</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Highlights -->
+        <div class="mt-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl shadow-lg p-8 text-white">
+            <h2 class="text-2xl font-bold mb-6 text-center">
+                ✨ Key Feature Highlights
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                    <div class="text-4xl mb-3">📱</div>
+                    <h3 class="font-bold mb-2">Mobile-First Design</h3>
+                    <p class="text-sm opacity-90">Fully responsive interface that works perfectly on all devices</p>
+                </div>
+                
+                <div>
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h3 class="font-bold mb-2">Performance Optimized</h3>
+                    <p class="text-sm opacity-90">Fast calculations with smooth animations and efficient rendering</p>
+                </div>
+                
+                <div>
+                    <div class="text-4xl mb-3">🎯</div>
+                    <h3 class="font-bold mb-2">User-Centered</h3>
+                    <p class="text-sm opacity-90">Intuitive interface with helpful feedback and error handling</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

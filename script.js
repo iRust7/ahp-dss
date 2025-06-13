@@ -829,224 +829,211 @@ function scrollToSection(sectionId) {
  * Enhanced chart creation with loading states and responsiveness
  */
 function createEnhancedCriteriaChart(criteriaData) {
-    const canvasContainer = document.getElementById('criteriaChart').parentElement;
+    // Destroy existing chart if exists
+    if (window.criteriaChart && typeof window.criteriaChart.destroy === 'function') {
+        window.criteriaChart.destroy();
+        window.criteriaChart = null;
+    }
     
-    // Show loading state
-    canvasContainer.innerHTML = '<div class="chart-loading"></div>';
+    const canvas = document.getElementById('criteriaChart');
+    if (!canvas) return;
     
-    setTimeout(() => {
-        // Recreate canvas
-        canvasContainer.innerHTML = '<canvas id="criteriaChart" class="w-full h-full"></canvas>';
-        const ctx = document.getElementById('criteriaChart').getContext('2d');
-        
-        // Destroy existing chart if exists
-        if (window.criteriaChart && typeof window.criteriaChart.destroy === 'function') {
-            window.criteriaChart.destroy();
-        }
-        
-        const isMobile = window.innerWidth < 768;
-        
-        window.criteriaChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: criteriaData.map(item => isMobile ? item.name.substring(0, 8) + '...' : item.name),
-                datasets: [{
-                    data: criteriaData.map(item => item.percentage),
-                    backgroundColor: [
-                        '#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6',
-                        '#EC4899', '#06B6D4', '#84CC16', '#F97316', '#6366F1'
-                    ],
-                    borderWidth: isMobile ? 2 : 3,
-                    borderColor: '#fff',
-                    hoverBorderWidth: isMobile ? 3 : 4,
-                    hoverOffset: isMobile ? 4 : 8
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: isMobile ? 'bottom' : 'right',
-                        labels: {
-                            padding: isMobile ? 10 : 20,
-                            usePointStyle: true,
-                            font: {
-                                size: isMobile ? 10 : 12,
-                                family: 'Inter, sans-serif'
-                            },
-                            generateLabels: function(chart) {
-                                const labels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
-                                return labels.map((label, index) => {
-                                    label.text = criteriaData[index].name + ` (${criteriaData[index].percentage}%)`;
-                                    return label;
-                                });
-                            }
-                        }
-                    },
-                    title: {
-                        display: !isMobile,
-                        text: 'Distribusi Bobot Kriteria (%)',
+    const ctx = canvas.getContext('2d');
+    const isMobile = window.innerWidth < 768;
+      window.criteriaChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: criteriaData.map(item => isMobile ? item.name.substring(0, 8) + '...' : item.name),
+            datasets: [{
+                data: criteriaData.map(item => item.percentage),
+                backgroundColor: [
+                    '#3B82F6', '#EF4444', '#10B981', '#F59E0B', '#8B5CF6',
+                    '#EC4899', '#06B6D4', '#84CC16', '#F97316', '#6366F1'
+                ],
+                borderWidth: isMobile ? 2 : 3,
+                borderColor: '#fff',
+                hoverBorderWidth: isMobile ? 3 : 4,
+                hoverOffset: isMobile ? 4 : 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: isMobile ? 'bottom' : 'right',
+                    labels: {
+                        padding: isMobile ? 10 : 20,
+                        usePointStyle: true,
                         font: {
-                            size: isMobile ? 14 : 16,
-                            weight: 'bold',
+                            size: isMobile ? 10 : 12,
                             family: 'Inter, sans-serif'
                         },
-                        padding: isMobile ? 10 : 20
-                    },
-                    tooltip: {
-                        enabled: true,
-                        callbacks: {
-                            label: function(context) {
-                                const label = criteriaData[context.dataIndex].name;
-                                const value = context.parsed || 0;
-                                const weight = criteriaData[context.dataIndex].weight;
-                                return `${label}: ${value}% (${weight.toFixed(4)})`;
-                            }
-                        },
-                        titleFont: {
-                            size: isMobile ? 12 : 14
-                        },
-                        bodyFont: {
-                            size: isMobile ? 11 : 13
+                        generateLabels: function(chart) {
+                            const labels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                            return labels.map((label, index) => {
+                                label.text = criteriaData[index].name + ` (${criteriaData[index].percentage}%)`;
+                                return label;
+                            });
                         }
                     }
                 },
-                animation: {
-                    animateRotate: true,
-                    animateScale: true,
-                    duration: isMobile ? 1000 : 1500,
-                    easing: 'easeOutQuart'
+                title: {
+                    display: !isMobile,
+                    text: 'Distribusi Bobot Kriteria (%)',
+                    font: {
+                        size: isMobile ? 14 : 16,
+                        weight: 'bold',
+                        family: 'Inter, sans-serif'
+                    },
+                    padding: isMobile ? 10 : 20
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'point'
+                tooltip: {
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            const label = criteriaData[context.dataIndex].name;
+                            const value = context.parsed || 0;
+                            const weight = criteriaData[context.dataIndex].weight;
+                            return `${label}: ${value}% (${weight.toFixed(4)})`;
+                        }
+                    },
+                    titleFont: {
+                        size: isMobile ? 12 : 14
+                    },
+                    bodyFont: {
+                        size: isMobile ? 11 : 13
+                    }
                 }
+            },
+            animation: {
+                animateRotate: true,
+                animateScale: true,
+                duration: isMobile ? 1000 : 1500,
+                easing: 'easeOutQuart'
+            },
+            interaction: {
+                intersect: false,
+                mode: 'point'
             }
-        });
-    }, 500);
+        }
+    });
 }
 
 /**
  * Enhanced scores chart with mobile optimization
  */
 function createEnhancedScoresChart(alternativesData) {
-    const canvasContainer = document.getElementById('scoresChart').parentElement;
+    // Destroy existing chart if exists
+    if (window.scoresChart && typeof window.scoresChart.destroy === 'function') {
+        window.scoresChart.destroy();
+        window.scoresChart = null;
+    }
     
-    // Show loading state
-    canvasContainer.innerHTML = '<div class="chart-loading"></div>';
+    const canvas = document.getElementById('scoresChart');
+    if (!canvas) return;
     
-    setTimeout(() => {
-        // Recreate canvas
-        canvasContainer.innerHTML = '<canvas id="scoresChart" class="w-full h-full"></canvas>';
-        const ctx = document.getElementById('scoresChart').getContext('2d');
-        
-        // Destroy existing chart if exists
-        if (window.scoresChart && typeof window.scoresChart.destroy === 'function') {
-            window.scoresChart.destroy();
-        }
-        
-        const isMobile = window.innerWidth < 768;
-        
-        window.scoresChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: alternativesData.map(item => 
-                    isMobile ? item.name.substring(0, 10) + '...' : item.name
-                ),
-                datasets: [{
-                    label: 'Skor (%)',
-                    data: alternativesData.map(item => item.percentage),
-                    backgroundColor: alternativesData.map((item, index) => {
-                        const colors = ['#FCD34D', '#D1D5DB', '#FCA5A5', '#93C5FD', '#D8B4FE'];
-                        return colors[index] || '#E5E7EB';
-                    }),
-                    borderColor: alternativesData.map((item, index) => {
-                        const colors = ['#F59E0B', '#6B7280', '#EF4444', '#3B82F6', '#8B5CF6'];
-                        return colors[index] || '#9CA3AF';
-                    }),
-                    borderWidth: isMobile ? 1 : 2,
-                    borderRadius: isMobile ? 4 : 8,
-                    borderSkipped: false,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: {
-                            color: '#F3F4F6'
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            },
-                            font: {
-                                family: 'Inter, sans-serif',
-                                size: isMobile ? 10 : 12
-                            }
-                        }
+    const ctx = canvas.getContext('2d');
+    const isMobile = window.innerWidth < 768;
+    
+    window.scoresChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: alternativesData.map(item => 
+                isMobile ? item.name.substring(0, 10) + '...' : item.name
+            ),
+            datasets: [{
+                label: 'Skor (%)',
+                data: alternativesData.map(item => item.percentage),
+                backgroundColor: alternativesData.map((item, index) => {
+                    const colors = ['#FCD34D', '#D1D5DB', '#FCA5A5', '#93C5FD', '#D8B4FE'];
+                    return colors[index] || '#E5E7EB';
+                }),
+                borderColor: alternativesData.map((item, index) => {
+                    const colors = ['#F59E0B', '#6B7280', '#EF4444', '#3B82F6', '#8B5CF6'];
+                    return colors[index] || '#9CA3AF';
+                }),
+                borderWidth: isMobile ? 1 : 2,
+                borderRadius: isMobile ? 4 : 8,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                        color: '#F3F4F6'
                     },
-                    x: {
-                        grid: {
-                            display: false
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
                         },
-                        ticks: {
-                            font: {
-                                family: 'Inter, sans-serif',
-                                size: isMobile ? 10 : 12
-                            },
-                            maxRotation: isMobile ? 45 : 0
+                        font: {
+                            family: 'Inter, sans-serif',
+                            size: isMobile ? 10 : 12
                         }
                     }
                 },
-                plugins: {
-                    legend: {
+                x: {
+                    grid: {
                         display: false
                     },
-                    title: {
-                        display: !isMobile,
-                        text: 'Perbandingan Skor Alternatif',
+                    ticks: {
                         font: {
-                            size: isMobile ? 14 : 16,
-                            weight: 'bold',
-                            family: 'Inter, sans-serif'
+                            family: 'Inter, sans-serif',
+                            size: isMobile ? 10 : 12
                         },
-                        padding: isMobile ? 10 : 20
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const item = alternativesData[context.dataIndex];
-                                return [
-                                    `Skor: ${item.score}`,
-                                    `Persentase: ${context.parsed.y}%`,
-                                    `Ranking: #${item.rank}`
-                                ];
-                            }
-                        },
-                        titleFont: {
-                            size: isMobile ? 12 : 14
-                        },
-                        bodyFont: {
-                            size: isMobile ? 11 : 13
-                        }
+                        maxRotation: isMobile ? 45 : 0
                     }
-                },
-                animation: {
-                    duration: isMobile ? 1000 : 1500,
-                    easing: 'easeOutQuart'
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
                 }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: !isMobile,
+                    text: 'Perbandingan Skor Alternatif',
+                    font: {
+                        size: isMobile ? 14 : 16,
+                        weight: 'bold',
+                        family: 'Inter, sans-serif'
+                    },
+                    padding: isMobile ? 10 : 20
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const item = alternativesData[context.dataIndex];
+                            return [
+                                `Skor: ${item.score}`,
+                                `Persentase: ${context.parsed.y}%`,
+                                `Ranking: #${item.rank}`
+                            ];
+                        }
+                    },
+                    titleFont: {
+                        size: isMobile ? 12 : 14
+                    },
+                    bodyFont: {
+                        size: isMobile ? 11 : 13
+                    }
+                }
+            },
+            animation: {
+                duration: isMobile ? 1000 : 1500,
+                easing: 'easeOutQuart'
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
-        });
-    }, 500);
+        }
+    });
 }
 
 /**
@@ -1118,27 +1105,36 @@ function validateCompleteMatrix(matrixType) {
 /**
  * Window resize handler for chart responsiveness
  */
+let resizeTimeout;
 function handleWindowResize() {
-    if (window.criteriaChart) {
-        window.criteriaChart.resize();
-    }
-    if (window.scoresChart) {
-        window.scoresChart.resize();
-    }
-    
-    // Update matrix input sizes on mobile
-    const isMobile = window.innerWidth < 768;
-    const matrixInputs = document.querySelectorAll('.matrix-table input');
-    
-    matrixInputs.forEach(input => {
-        if (isMobile) {
-            input.style.width = '40px';
-            input.style.fontSize = '10px';
-        } else {
-            input.style.width = '80px';
-            input.style.fontSize = '14px';
+    // Debounce resize events to prevent multiple chart updates
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        try {
+            if (window.criteriaChart && typeof window.criteriaChart.resize === 'function') {
+                window.criteriaChart.resize();
+            }
+            if (window.scoresChart && typeof window.scoresChart.resize === 'function') {
+                window.scoresChart.resize();
+            }
+        } catch (error) {
+            console.warn('Chart resize error:', error);
         }
-    });
+        
+        // Update matrix input sizes on mobile
+        const isMobile = window.innerWidth < 768;
+        const matrixInputs = document.querySelectorAll('.matrix-table input');
+        
+        matrixInputs.forEach(input => {
+            if (isMobile) {
+                input.style.width = '40px';
+                input.style.fontSize = '10px';
+            } else {
+                input.style.width = '80px';
+                input.style.fontSize = '14px';
+            }
+        });
+    }, 250);
 }
 
 /**
@@ -1249,6 +1245,56 @@ function processAHP() {
 }
 
 /**
+ * Global chart state management
+ */
+let chartState = {
+    criteriaChartInitialized: false,
+    scoresChartInitialized: false,
+    lastCriteriaData: null,
+    lastScoresData: null
+};
+
+/**
+ * Reset chart state
+ */
+function resetChartState() {
+    chartState.criteriaChartInitialized = false;
+    chartState.scoresChartInitialized = false;
+    chartState.lastCriteriaData = null;
+    chartState.lastScoresData = null;
+}
+
+/**
+ * Safe chart creation with state management
+ */
+function safeCreateEnhancedCriteriaChart(criteriaData) {
+    // Prevent duplicate chart creation
+    if (chartState.criteriaChartInitialized && 
+        JSON.stringify(criteriaData) === JSON.stringify(chartState.lastCriteriaData)) {
+        return;
+    }
+    
+    chartState.lastCriteriaData = criteriaData;
+    createEnhancedCriteriaChart(criteriaData);
+    chartState.criteriaChartInitialized = true;
+}
+
+/**
+ * Safe scores chart creation with state management
+ */
+function safeCreateEnhancedScoresChart(alternativesData) {
+    // Prevent duplicate chart creation
+    if (chartState.scoresChartInitialized && 
+        JSON.stringify(alternativesData) === JSON.stringify(chartState.lastScoresData)) {
+        return;
+    }
+    
+    chartState.lastScoresData = alternativesData;
+    createEnhancedScoresChart(alternativesData);
+    chartState.scoresChartInitialized = true;
+}
+
+/**
  * Display calculation results with enhanced charts
  */
 function displayResults(results) {
@@ -1265,8 +1311,8 @@ function displayResults(results) {
         displayConsistencyResults(detailedResults.consistency);
         
         // Create enhanced charts
-        createEnhancedCriteriaChart(detailedResults.criteria);
-        createEnhancedScoresChart(detailedResults.alternatives);
+        safeCreateEnhancedCriteriaChart(detailedResults.criteria);
+        safeCreateEnhancedScoresChart(detailedResults.alternatives);
         
     } catch (error) {
         console.error('Error displaying results:', error);

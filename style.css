@@ -301,6 +301,57 @@ button:disabled {
     height: 300px;
 }
 
+/* Chart container fixes to prevent shrinking */
+#criteriaChart, #scoresChart {
+    min-height: 300px !important;
+    height: 300px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+}
+
+#criteriaChart canvas, #scoresChart canvas {
+    height: 300px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+}
+
+/* Chart containers should maintain their size */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    min-height: 300px;
+    overflow: hidden;
+}
+
+/* Prevent chart containers from collapsing */
+.bg-white:has(#criteriaChart), .bg-white:has(#scoresChart) {
+    min-height: 400px;
+}
+
+/* Mobile chart optimizations */
+@media (max-width: 768px) {
+    #criteriaChart, #scoresChart {
+        min-height: 250px !important;
+        height: 250px !important;
+    }
+    
+    #criteriaChart canvas, #scoresChart canvas {
+        height: 250px !important;
+    }
+    
+    .chart-container {
+        height: 250px;
+        min-height: 250px;
+    }
+    
+    .bg-white:has(#criteriaChart), .bg-white:has(#scoresChart) {
+        min-height: 350px;
+    }
+}
+
 /* Progress indicator */
 .progress-indicator {
     width: 100%;
