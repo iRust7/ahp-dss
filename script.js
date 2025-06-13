@@ -86,16 +86,15 @@ function initializeApp() {
 function renderCriteriaList() {
     const container = document.getElementById('criteriaList');
     container.innerHTML = '';
-    
-    criteria.forEach((criterion, index) => {
+      criteria.forEach((criterion, index) => {
         const item = document.createElement('div');
-        item.className = 'criteria-item flex items-center justify-between p-3 bg-gray-50 rounded-lg border';
+        item.className = 'luxury-list-item';
         item.innerHTML = `
             <input type="text" value="${criterion}" 
                    onchange="updateCriteria(${index}, this.value)"
-                   class="flex-1 bg-transparent border-none outline-none font-medium">
+                   class="flex-1 bg-transparent border-none outline-none font-medium text-white">
             <button onclick="removeCriteria(${index})" 
-                    class="text-red-500 hover:text-red-700 p-1">
+                    class="remove-btn">
                 <i class="fas fa-times"></i>
             </button>
         `;
@@ -109,16 +108,15 @@ function renderCriteriaList() {
 function renderAlternativesList() {
     const container = document.getElementById('alternativesList');
     container.innerHTML = '';
-    
-    alternatives.forEach((alternative, index) => {
+      alternatives.forEach((alternative, index) => {
         const item = document.createElement('div');
-        item.className = 'alternative-item flex items-center justify-between p-3 bg-gray-50 rounded-lg border';
+        item.className = 'luxury-list-item';
         item.innerHTML = `
             <input type="text" value="${alternative}" 
                    onchange="updateAlternative(${index}, this.value)"
-                   class="flex-1 bg-transparent border-none outline-none font-medium">
+                   class="flex-1 bg-transparent border-none outline-none font-medium text-white">
             <button onclick="removeAlternative(${index})" 
-                    class="text-red-500 hover:text-red-700 p-1">
+                    class="remove-btn">
                 <i class="fas fa-times"></i>
             </button>
         `;
@@ -219,30 +217,30 @@ function renderCriteriaMatrix() {
     const container = document.getElementById('criteriaMatrix');
     const n = criteria.length;
     
-    let html = '<table class="matrix-table w-full border-collapse border border-gray-300">';
+    let html = '<table class="luxury-table w-full">';
     
     // Header row
-    html += '<thead><tr><th class="border border-gray-300 p-2 bg-blue-50">Kriteria</th>';
+    html += '<thead><tr><th class="p-3">Kriteria</th>';
     criteria.forEach(criterion => {
-        html += `<th class="border border-gray-300 p-2 bg-blue-50 text-sm">${criterion}</th>`;
+        html += `<th class="p-3 text-sm">${criterion}</th>`;
     });
     html += '</tr></thead><tbody>';
     
     // Matrix rows
     for (let i = 0; i < n; i++) {
-        html += `<tr><td class="border border-gray-300 p-2 bg-blue-50 font-medium">${criteria[i]}</td>`;
+        html += `<tr><td class="p-3 font-medium">${criteria[i]}</td>`;
         
         for (let j = 0; j < n; j++) {
             if (i === j) {
-                html += `<td class="border border-gray-300 p-2 diagonal bg-gray-100">1</td>`;
+                html += `<td class="p-2 diagonal">1</td>`;
             } else if (i < j) {
-                html += `<td class="border border-gray-300 p-2">
+                html += `<td class="p-2">
                     <input type="number" step="0.01" min="0.11" max="9" value="1"
                            onchange="updateCriteriaMatrix(${i}, ${j}, this.value)"
-                           class="w-full p-1 text-center border rounded">
+                           class="matrix-input">
                 </td>`;
             } else {
-                html += `<td class="border border-gray-300 p-2 calculated bg-yellow-50" id="criteria-${i}-${j}">1</td>`;
+                html += `<td class="p-2 calculated" id="criteria-${i}-${j}">1</td>`;
             }
         }
         html += '</tr>';
@@ -261,40 +259,39 @@ function renderAlternativeMatrices() {
     
     criteria.forEach(criterion => {
         const matrixDiv = document.createElement('div');
-        matrixDiv.className = 'bg-white rounded-xl shadow-lg p-6';
+        matrixDiv.className = 'alternative-matrix-card';
         
         const n = alternatives.length;
         let html = `
-            <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+            <h4 class="text-lg font-display font-bold text-white mb-4 flex items-center">
                 <i class="fas fa-table text-green-600 mr-3"></i>
                 Matriks Perbandingan: ${criterion}
-            </h4>
-            <div class="overflow-x-auto">
-                <table class="matrix-table w-full border-collapse border border-gray-300">
+            </h4>            <div class="overflow-x-auto">
+                <table class="luxury-table w-full">
                     <thead>
                         <tr>
-                            <th class="border border-gray-300 p-2 bg-green-50">Alternatif</th>
+                            <th class="p-3">Alternatif</th>
         `;
         
         alternatives.forEach(alternative => {
-            html += `<th class="border border-gray-300 p-2 bg-green-50 text-sm">${alternative}</th>`;
+            html += `<th class="p-3 text-sm">${alternative}</th>`;
         });
         html += '</tr></thead><tbody>';
         
         for (let i = 0; i < n; i++) {
-            html += `<tr><td class="border border-gray-300 p-2 bg-green-50 font-medium">${alternatives[i]}</td>`;
+            html += `<tr><td class="p-3 font-medium">${alternatives[i]}</td>`;
             
             for (let j = 0; j < n; j++) {
                 if (i === j) {
-                    html += `<td class="border border-gray-300 p-2 diagonal bg-gray-100">1</td>`;
+                    html += `<td class="p-2 diagonal">1</td>`;
                 } else if (i < j) {
-                    html += `<td class="border border-gray-300 p-2">
+                    html += `<td class="p-2">
                         <input type="number" step="0.01" min="0.11" max="9" value="1"
                                onchange="updateAlternativeMatrix('${criterion}', ${i}, ${j}, this.value)"
-                               class="w-full p-1 text-center border rounded">
+                               class="matrix-input">
                     </td>`;
                 } else {
-                    html += `<td class="border border-gray-300 p-2 calculated bg-yellow-50" id="alt-${criterion}-${i}-${j}">1</td>`;
+                    html += `<td class="p-2 calculated" id="alt-${criterion}-${i}-${j}">1</td>`;
                 }
             }
             html += '</tr>';
@@ -417,7 +414,7 @@ function updateProgressIndicator(matrixType, percentage) {
         const progressDiv = document.createElement('div');
         progressDiv.innerHTML = `
             <div class="mt-4 mb-2">
-                <div class="flex justify-between text-sm text-gray-600 mb-1">
+                <div class="flex justify-between text-sm text-primary-light mb-1">
                     <span>Kelengkapan ${matrixType === 'criteria' ? 'Matriks Kriteria' : 'Matriks Alternatif'}</span>
                     <span id="${indicatorId}-text">0%</span>
                 </div>
@@ -446,14 +443,13 @@ function suggestMatrixValues(element, i, j) {
     if (element.value === '') {
         const suggestions = [1, 2, 3, 4, 5];
         const suggestionDiv = document.createElement('div');
-        suggestionDiv.className = 'absolute bg-white border rounded shadow-lg p-2 z-20';
+        suggestionDiv.className = 'absolute suggestion-box border rounded shadow-lg p-2 z-20';
         suggestionDiv.style.top = '100%';
         suggestionDiv.style.left = '0';
         suggestionDiv.style.minWidth = '120px';
-        
-        suggestions.forEach(value => {
+          suggestions.forEach(value => {
             const btn = document.createElement('button');
-            btn.className = 'block w-full text-left px-2 py-1 hover:bg-blue-50 rounded text-sm';
+            btn.className = 'suggestion-item block w-full text-left';
             btn.textContent = `${value} - ${getScaleDescription(value)}`;
             btn.onclick = () => {
                 element.value = value;
@@ -503,25 +499,24 @@ function renderEnhancedCriteriaMatrix() {
     const container = document.getElementById('criteriaMatrix');
     const n = criteria.length;
     
-    let html = '<table class="matrix-table enhanced-table w-full border-collapse border border-gray-300">';
+    let html = '<table class="luxury-table enhanced-table w-full">';
     
     // Header row
-    html += '<thead><tr><th class="border border-gray-300 p-2 bg-blue-50">Kriteria</th>';
+    html += '<thead><tr><th class="p-3">Kriteria</th>';
     criteria.forEach(criterion => {
-        html += `<th class="border border-gray-300 p-2 bg-blue-50 text-sm">${criterion}</th>`;
+        html += `<th class="p-3 text-sm">${criterion}</th>`;
     });
     html += '</tr></thead><tbody>';
     
     // Matrix rows with enhanced features
     for (let i = 0; i < n; i++) {
-        html += `<tr><td class="border border-gray-300 p-2 bg-blue-50 font-medium">${criteria[i]}</td>`;
+        html += `<tr><td class="p-3 font-medium">${criteria[i]}</td>`;
         
         for (let j = 0; j < n; j++) {
             if (i === j) {
-                html += `<td class="border border-gray-300 p-2 diagonal bg-gray-100">1</td>`;
+                html += `<td class="p-2 diagonal">1</td>`;
             } else if (i < j) {
-                html += `<td class="border border-gray-300 p-2 relative">
-                    <input type="number" 
+                html += `<td class="p-2 relative">                    <input type="number" 
                            step="0.1" 
                            min="0.1" 
                            max="9" 
@@ -532,10 +527,10 @@ function renderEnhancedCriteriaMatrix() {
                            onchange="handleMatrixChange(this, ${i}, ${j}, 'criteria')"
                            onfocus="suggestMatrixValues(this, ${i}, ${j})"
                            oninput="validateMatrixInput(this, ${i}, ${j}, 'criteria')"
-                           class="w-full p-1 text-center border rounded focus:ring-2 focus:ring-blue-500 transition-all">
+                           class="matrix-input">
                 </td>`;
             } else {
-                html += `<td class="border border-gray-300 p-2 calculated bg-yellow-50 transition-all" id="criteria-${i}-${j}">1</td>`;
+                html += `<td class="p-2 calculated" id="criteria-${i}-${j}">1</td>`;
             }
         }
         html += '</tr>';
@@ -557,49 +552,43 @@ function renderEnhancedAlternativeMatrices() {
     
     criteria.forEach(criterion => {
         const matrixDiv = document.createElement('div');
-        matrixDiv.className = 'bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500';
+        matrixDiv.className = 'alternative-matrix-card border-l-4 border-accent-green';
         
         const n = alternatives.length;
         let html = `
             <div class="flex items-center justify-between mb-4">
-                <h4 class="text-lg font-bold text-gray-800 flex items-center">
+                <h4 class="text-lg font-display font-bold text-white flex items-center">
                     <i class="fas fa-table text-green-600 mr-3"></i>
                     Matriks Perbandingan: ${criterion}
-                </h4>
-                <div class="flex space-x-2">
+                </h4>                <div class="flex space-x-2">
                     <button onclick="fillMatrixRandomly('${criterion}')" 
-                            class="text-xs bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition-colors">
+                            class="luxury-button-sm bg-accent-blue">
                         <i class="fas fa-dice mr-1"></i>
                         Random
                     </button>
                     <button onclick="resetMatrix('${criterion}')" 
-                            class="text-xs bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors">
+                            class="luxury-button-sm bg-accent-gold">
                         <i class="fas fa-undo mr-1"></i>
                         Reset
                     </button>
-                </div>
-            </div>
+                </div>            </div>
             <div class="overflow-x-auto">
-                <table class="matrix-table enhanced-table w-full border-collapse border border-gray-300">
+                <table class="matrix-table enhanced-table w-full">
                     <thead>
                         <tr>
-                            <th class="border border-gray-300 p-2 bg-green-50">Alternatif</th>
-        `;
-        
+                            <th class="p-2">Alternatif</th>
+        `;        
         alternatives.forEach(alternative => {
-            html += `<th class="border border-gray-300 p-2 bg-green-50 text-sm">${alternative}</th>`;
+            html += `<th class="p-2 text-sm">${alternative}</th>`;
         });
-        html += '</tr></thead><tbody>';
-        
+        html += '</tr></thead><tbody>';        
         for (let i = 0; i < n; i++) {
-            html += `<tr><td class="border border-gray-300 p-2 bg-green-50 font-medium">${alternatives[i]}</td>`;
+            html += `<tr><td class="p-2 font-medium">${alternatives[i]}</td>`;
             
             for (let j = 0; j < n; j++) {
                 if (i === j) {
-                    html += `<td class="border border-gray-300 p-2 diagonal bg-gray-100">1</td>`;
-                } else if (i < j) {
-                    html += `<td class="border border-gray-300 p-2 relative">
-                        <input type="number" 
+                    html += `<td class="p-2 diagonal">1</td>`;                } else if (i < j) {
+                    html += `<td class="p-2 relative">                        <input type="number"
                                step="0.1" 
                                min="0.1" 
                                max="9" 
@@ -611,10 +600,10 @@ function renderEnhancedAlternativeMatrices() {
                                onchange="handleMatrixChange(this, ${i}, ${j}, '${criterion}')"
                                onfocus="suggestMatrixValues(this, ${i}, ${j})"
                                oninput="validateMatrixInput(this, ${i}, ${j}, 'alternative')"
-                               class="w-full p-1 text-center border rounded focus:ring-2 focus:ring-green-500 transition-all">
+                               class="matrix-input">
                     </td>`;
                 } else {
-                    html += `<td class="border border-gray-300 p-2 calculated bg-yellow-50 transition-all" id="alt-${criterion}-${i}-${j}">1</td>`;
+                    html += `<td class="p-2 calculated" id="alt-${criterion}-${i}-${j}">1</td>`;
                 }
             }
             html += '</tr>';
@@ -662,21 +651,20 @@ function addMatrixHelper(matrixType) {
         // Helper already added in renderEnhancedAlternativeMatrices
         return;
     }
-    
-    // Add helper tools for criteria matrix
+      // Add helper tools for criteria matrix
     const helper = document.createElement('div');
-    helper.className = 'mt-4 p-4 bg-blue-50 rounded-lg';
+    helper.className = 'mt-4 p-4 luxury-card';
     helper.innerHTML = `
         <div class="flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center space-x-4">
-                <h5 class="font-semibold text-blue-800">Tools Matrix:</h5>
+                <h5 class="font-semibold text-accent-blue mb-2">Tools Matrix:</h5>
                 <button onclick="fillMatrixRandomly('criteria')" 
-                        class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600 transition-colors">
+                        class="luxury-button-sm bg-accent-blue">
                     <i class="fas fa-dice mr-1"></i>
                     Random Fill
                 </button>
                 <button onclick="resetMatrix('criteria')" 
-                        class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600 transition-colors">
+                        class="luxury-button-sm bg-accent-gold">
                     <i class="fas fa-undo mr-1"></i>
                     Reset
                 </button>
@@ -686,7 +674,7 @@ function addMatrixHelper(matrixType) {
                     Preview Konsistensi
                 </button>
             </div>
-            <div id="matrix-status" class="text-sm text-gray-600"></div>
+            <div id="matrix-status" class="text-sm text-primary-light"></div>
         </div>
     `;
     
@@ -1325,14 +1313,13 @@ function displayResults(results) {
  */
 function displayCriteriaWeights(criteriaData) {
     const table = document.getElementById('criteriaWeights');
-    
-    let html = `
+      let html = `
         <thead>
-            <tr class="bg-blue-50">
-                <th class="border border-gray-300 p-3 text-left">Kriteria</th>
-                <th class="border border-gray-300 p-3 text-center">Bobot</th>
-                <th class="border border-gray-300 p-3 text-center">Persentase</th>
-                <th class="border border-gray-300 p-3 text-center">Ranking</th>
+            <tr>
+                <th class="p-3 text-left">Kriteria</th>
+                <th class="p-3 text-center">Bobot</th>
+                <th class="p-3 text-center">Persentase</th>
+                <th class="p-3 text-center">Ranking</th>
             </tr>
         </thead>
         <tbody>
@@ -1340,16 +1327,15 @@ function displayCriteriaWeights(criteriaData) {
     
     // Sort by weight for ranking
     const sortedCriteria = [...criteriaData].sort((a, b) => b.weight - a.weight);
-    
-    sortedCriteria.forEach((item, index) => {
+      sortedCriteria.forEach((item, index) => {
         const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
         html += `
-            <tr class="hover:bg-gray-50">
-                <td class="border border-gray-300 p-3 font-medium">${item.name}</td>
-                <td class="border border-gray-300 p-3 text-center">${item.weight.toFixed(4)}</td>
-                <td class="border border-gray-300 p-3 text-center">${item.percentage}%</td>
-                <td class="border border-gray-300 p-3 text-center">
-                    <span class="rank-badge ${rankClass}">${index + 1}</span>
+            <tr>
+                <td class="p-3 font-medium">${item.name}</td>
+                <td class="p-3 text-center">${item.weight.toFixed(4)}</td>
+                <td class="p-3 text-center">${item.percentage}%</td>
+                <td class="p-3 text-center">
+                    <span class="rank-badge high-contrast ${rankClass}">${index + 1}</span>
                 </td>
             </tr>
         `;
@@ -1364,28 +1350,26 @@ function displayCriteriaWeights(criteriaData) {
  */
 function displayAlternativeScores(alternativesData) {
     const table = document.getElementById('finalScores');
-    
-    let html = `
+      let html = `
         <thead>
-            <tr class="bg-yellow-50">
-                <th class="border border-gray-300 p-3 text-left">Alternatif</th>
-                <th class="border border-gray-300 p-3 text-center">Skor</th>
-                <th class="border border-gray-300 p-3 text-center">Persentase</th>
-                <th class="border border-gray-300 p-3 text-center">Ranking</th>
+            <tr>
+                <th class="p-3 text-left">Alternatif</th>
+                <th class="p-3 text-center">Skor</th>
+                <th class="p-3 text-center">Persentase</th>
+                <th class="p-3 text-center">Ranking</th>
             </tr>
         </thead>
         <tbody>
     `;
-    
-    alternativesData.forEach((item) => {
+      alternativesData.forEach((item) => {
         const rankClass = item.rank === 1 ? 'rank-1' : item.rank === 2 ? 'rank-2' : item.rank === 3 ? 'rank-3' : '';
         html += `
-            <tr class="hover:bg-gray-50">
-                <td class="border border-gray-300 p-3 font-medium">${item.name}</td>
-                <td class="border border-gray-300 p-3 text-center">${item.score}</td>
-                <td class="border border-gray-300 p-3 text-center">${item.percentage}%</td>
-                <td class="border border-gray-300 p-3 text-center">
-                    <span class="rank-badge ${rankClass}">${item.rank}</span>
+            <tr>
+                <td class="p-3 font-medium">${item.name}</td>
+                <td class="p-3 text-center">${item.score}</td>
+                <td class="p-3 text-center">${item.percentage}%</td>
+                <td class="p-3 text-center">
+                    <span class="rank-badge high-contrast ${rankClass}">${item.rank}</span>
                 </td>
             </tr>
         `;
@@ -1713,8 +1697,7 @@ function showMessage(message, type = 'info') {
     
     messageDiv.innerHTML = `
         <div class="flex items-center">
-            <div class="flex-1">${message}</div>
-            <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-gray-500 hover:text-gray-700">
+            <div class="flex-1">${message}</div>            <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-red-400 hover:text-red-300 luxury-button-sm">
                 <i class="fas fa-times"></i>
             </button>
         </div>

@@ -6,52 +6,48 @@
     <title>AHP Decision Support System - Pemilihan Lokasi Gudang</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <link rel="stylesheet" href="modern-luxury.css">
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">    <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700 shadow-2xl sticky top-0 z-40">
+<body class="luxury-bg">    <!-- Header -->    <header class="luxury-header">
         <div class="container mx-auto px-6 py-6">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-6">
-                    <div class="bg-white text-blue-600 p-4 rounded-xl shadow-lg">
-                        <i class="fas fa-warehouse text-3xl"></i>
+                    <div class="luxury-icon-container">
+                        <i class="fas fa-warehouse text-2xl"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-bold text-white mb-1">AHP Decision Support System</h1>
-                        <p class="text-sm md:text-lg text-blue-100 font-medium">Sistem Pendukung Keputusan Pemilihan Lokasi Gudang</p>
+                        <h1 class="text-2xl md:text-4xl font-display font-bold text-white mb-1">AHP Decision Support System</h1>
+                        <p class="text-sm md:text-lg text-primary-light font-medium">Sistem Pendukung Keputusan Pemilihan Lokasi Gudang</p>
                     </div>
                 </div>
                 <div class="hidden md:block text-right">
-                    <div class="text-sm text-blue-200 font-medium">Metode Penelitian</div>
-                    <div class="text-xl font-bold text-white">Analytical Hierarchy Process</div>
-                    <div class="text-xs text-blue-200 mt-1">Decision Making Method</div>
+                    <div class="text-sm text-primary-light font-medium">Metode Penelitian</div>
+                    <div class="text-xl font-display font-bold text-white">Analytical Hierarchy Process</div>
+                    <div class="text-xs text-primary-light mt-1">Decision Making Method</div>
                 </div>
-                <button id="mobileMenuToggle" class="md:hidden p-3 text-white hover:text-blue-200 bg-white bg-opacity-20 rounded-lg">
+                <button id="mobileMenuToggle" class="md:hidden luxury-button-secondary p-3">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
-            </div>
-              <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden mt-4 p-4 bg-white bg-opacity-95 rounded-lg shadow-lg backdrop-blur-sm">
+            </div>              <!-- Mobile Menu -->
+            <div id="mobileMenu" class="luxury-mobile-menu hidden md:hidden mt-4">
                 <div class="text-center">
-                    <div class="text-sm text-gray-600 font-medium">Metode Penelitian</div>
-                    <div class="text-lg font-bold text-blue-600">Analytical Hierarchy Process</div>
-                    <div class="text-xs text-gray-500 mt-1">Decision Making Method</div>
+                    <div class="text-sm text-primary-light font-medium">Metode Penelitian</div>
+                    <div class="text-lg font-display font-bold text-white">Analytical Hierarchy Process</div>
+                    <div class="text-xs text-primary-light mt-1">Decision Making Method</div>
                 </div>
                 <div class="mt-4 flex flex-wrap gap-2 justify-center">
-                    <button onclick="scrollToSection('teamSection')" class="text-sm bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button onclick="scrollToSection('teamSection')" class="luxury-button-sm bg-accent-purple">
                         <i class="fas fa-users mr-1"></i>
                         Tim
                     </button>
-                    <button onclick="scrollToSection('criteriaSection')" class="text-sm bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    <button onclick="scrollToSection('criteriaSection')" class="luxury-button-sm bg-accent-green">
                         <i class="fas fa-list mr-1"></i>
                         Kriteria
                     </button>
-                    <button onclick="scrollToSection('matrixSection')" class="text-sm bg-purple-600 text-white px-3 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    <button onclick="scrollToSection('matrixSection')" class="luxury-button-sm bg-accent-blue">
                         <i class="fas fa-table mr-1"></i>
                         Matrix
-                    </button>
-                    <button onclick="scrollToSection('resultsSection')" class="text-sm bg-orange-600 text-white px-3 py-2 rounded-lg hover:bg-orange-700 transition-colors">
+                    </button>                    <button onclick="scrollToSection('resultsSection')" class="luxury-button-sm bg-accent-gold">
                         <i class="fas fa-chart-bar mr-1"></i>
                         Hasil
                     </button>
@@ -61,145 +57,138 @@
     </header>    <!-- Main Container -->
     <div class="container mx-auto px-6 py-8">
         <!-- Team Dashboard - Moved to Top -->
-        <div id="teamSection" class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div id="teamSection" class="luxury-card mb-8">
             <div class="flex items-center justify-center mb-6">
-                <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-lg">
-                    <i class="fas fa-users text-white text-2xl"></i>
+                <div class="luxury-icon-container">
+                    <i class="fas fa-users text-2xl"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-800 ml-4">Tim Pengembang</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <h2 class="text-2xl font-display font-bold text-white ml-4">Tim Pengembang</h2>
+            </div>            
+            <div class="luxury-team-grid">
                 <!-- Team Member 1 -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 text-center border border-blue-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div class="luxury-team-card">
+                    <div class="luxury-team-avatar bg-accent-blue">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 text-lg mb-1">Moh Nurul Haq</h3>
-                    <p class="text-blue-600 font-semibold">NPM: 23670138</p>
-                    <div class="mt-2 text-sm text-gray-600">
+                    <h3 class="font-display font-bold text-white text-lg mb-1">Moh Nurul Haq</h3>
+                    <p class="text-accent-blue font-semibold">NPM: 23670138</p>
+                    <div class="mt-2 text-sm text-primary-light">
                         <i class="fas fa-code mr-1"></i>KL5
                     </div>
                 </div>
 
                 <!-- Team Member 2 -->
-                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 text-center border border-green-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div class="luxury-team-card">
+                    <div class="luxury-team-avatar bg-accent-green">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 text-lg mb-1">Leo Aditiya H.</h3>
-                    <p class="text-green-600 font-semibold">NPM: 23670103</p>
-                    <div class="mt-2 text-sm text-gray-600">
+                    <h3 class="font-display font-bold text-white text-lg mb-1">Leo Aditiya H.</h3>
+                    <p class="text-accent-green font-semibold">NPM: 23670103</p>
+                    <div class="mt-2 text-sm text-primary-light">
                         <i class="fas fa-database mr-1"></i>KL5
                     </div>
                 </div>
 
                 <!-- Team Member 3 -->
-                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 text-center border border-purple-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="bg-purple-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div class="luxury-team-card">
+                    <div class="luxury-team-avatar bg-accent-purple">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 text-lg mb-1">Sinta Nur F.N</h3>
-                    <p class="text-purple-600 font-semibold">NPM: 23670111</p>
-                    <div class="mt-2 text-sm text-gray-600">
+                    <h3 class="font-display font-bold text-white text-lg mb-1">Sinta Nur F.N</h3>
+                    <p class="text-accent-purple font-semibold">NPM: 23670111</p>
+                    <div class="mt-2 text-sm text-primary-light">
                         <i class="fas fa-chart-line mr-1"></i>KL5
                     </div>
                 </div>
 
                 <!-- Team Member 4 -->
-                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 text-center border border-orange-200 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="bg-orange-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div class="luxury-team-card">
+                    <div class="luxury-team-avatar bg-accent-gold">
                         <i class="fas fa-user text-2xl"></i>
                     </div>
-                    <h3 class="font-bold text-gray-800 text-lg mb-1">Siti Muawanah</h3>
-                    <p class="text-orange-600 font-semibold">NPM: 23670099</p>
-                    <div class="mt-2 text-sm text-gray-600">
+                    <h3 class="font-display font-bold text-white text-lg mb-1">Siti Muawanah</h3>
+                    <p class="text-accent-gold font-semibold">NPM: 23670099</p>
+                    <div class="mt-2 text-sm text-primary-light">
                         <i class="fas fa-paint-brush mr-1"></i>KL 5
                     </div>
                 </div>
             </div>
 
             <!-- Team Stats -->
-            <div class="mt-6 bg-gray-50 rounded-lg p-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div>
-                        <div class="text-2xl font-bold text-blue-600">4</div>
-                        <div class="text-sm text-gray-600">Anggota Tim</div>
+            <div class="luxury-stats-container mt-6">
+                <div class="luxury-stats-grid">
+                    <div class="luxury-stat-item">
+                        <div class="text-2xl font-display font-bold text-accent-blue">4</div>
+                        <div class="text-sm text-primary-light">Anggota Tim</div>
                     </div>
-                    <div>
-                        <div class="text-2xl font-bold text-green-600">2025</div>
-                        <div class="text-sm text-gray-600">Tahun Akademik</div>
+                    <div class="luxury-stat-item">
+                        <div class="text-2xl font-display font-bold text-accent-green">2025</div>
+                        <div class="text-sm text-primary-light">Tahun Akademik</div>
                     </div>
-                    <div>
-                        <div class="text-2xl font-bold text-purple-600">AHP</div>
-                        <div class="text-sm text-gray-600">Metode</div>
+                    <div class="luxury-stat-item">
+                        <div class="text-2xl font-display font-bold text-accent-purple">AHP</div>
+                        <div class="text-sm text-primary-light">Metode</div>
                     </div>
-                    <div>
-                        <div class="text-2xl font-bold text-orange-600">DSS</div>
-                        <div class="text-sm text-gray-600">Sistem</div>
+                    <div class="luxury-stat-item">
+                        <div class="text-2xl font-display font-bold text-accent-gold">DSS</div>
+                        <div class="text-sm text-primary-light">Sistem</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Introduction Card -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div class="luxury-card mb-8">
             <div class="flex items-start space-x-4">
-                <div class="bg-blue-100 p-3 rounded-lg">
-                    <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+                <div class="luxury-icon-container">
+                    <i class="fas fa-info-circle text-xl"></i>
                 </div>
                 <div class="flex-1">
-                    <h2 class="text-xl font-bold text-gray-800 mb-2">Studi Kasus</h2>
-                    <p class="text-gray-600 leading-relaxed">
-                        Sebuah perusahaan ekspedisi ingin memilih lokasi gudang terbaik dari tiga alternatif: 
-                        <span class="font-semibold text-blue-600">Safe'n Lock</span>, 
-                        <span class="font-semibold text-blue-600">Rungkut Industri</span>, dan 
-                        <span class="font-semibold text-blue-600">SPILL</span>. 
+                    <h2 class="text-xl font-display font-bold text-white mb-2">Studi Kasus</h2>
+                    <p class="text-primary-light leading-relaxed">
+                        Sebuah perusahaan ekspedisi ingin memilih lokasi gudang terbaik dari tiga alternatif:                        <span class="font-semibold text-accent-blue">GIIC</span>, 
+                        <span class="font-semibold text-accent-green">Rungkut Industri</span>, dan 
+                        <span class="font-semibold text-accent-purple">SPILL</span>.
                         Penilaian dilakukan berdasarkan lima kriteria: Jarak, Biaya, Fasilitas, Posisi Geografis, dan Luas Gudang.
                     </p>
                 </div>
             </div>
         </div>        <!-- Input Section -->
-        <div id="criteriaSection" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            <!-- Criteria Management -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-list-ul text-blue-600 mr-3"></i>
+        <div id="criteriaSection" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">            <!-- Criteria Management -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-list-ul text-accent-blue mr-3"></i>
                     Manajemen Kriteria
                 </h3>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Kriteria</label>
+                        <label class="block text-sm font-medium text-primary-light mb-2">Nama Kriteria</label>
                         <div id="criteriaList" class="space-y-2">
                             <!-- Criteria items will be populated by JavaScript -->
                         </div>
-                        <div class="mt-3 flex space-x-2">
-                            <input type="text" id="newCriteria" placeholder="Tambah kriteria baru..." 
-                                   class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <button onclick="addCriteria()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <div class="mt-3 flex space-x-2">                            <input type="text" id="newCriteria" placeholder="Tambah kriteria baru..." 
+                                   class="luxury-input flex-1">
+                            <button onclick="addCriteria()" class="luxury-button bg-accent-blue">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Alternatives Management -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-map-marker-alt text-green-600 mr-3"></i>
+            </div>            <!-- Alternatives Management -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-map-marker-alt text-accent-green mr-3"></i>
                     Manajemen Alternatif
                 </h3>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Lokasi Alternatif</label>
+                        <label class="block text-sm font-medium text-primary-light mb-2">Lokasi Alternatif</label>
                         <div id="alternativesList" class="space-y-2">
                             <!-- Alternative items will be populated by JavaScript -->
                         </div>
-                        <div class="mt-3 flex space-x-2">
-                            <input type="text" id="newAlternative" placeholder="Tambah alternatif baru..." 
-                                   class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <button onclick="addAlternative()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                        <div class="mt-3 flex space-x-2">                            <input type="text" id="newAlternative" placeholder="Tambah alternatif baru..." 
+                                   class="luxury-input flex-1">
+                            <button onclick="addAlternative()" class="luxury-button bg-accent-green">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -207,13 +196,13 @@
                 </div>
             </div>
         </div>        <!-- Criteria Comparison Matrix -->
-        <div id="matrixSection" class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div id="matrixSection" class="luxury-card mb-8">
             <div class="flex items-center justify-between mb-6">
-                <h3 class="text-xl font-bold text-gray-800 flex items-center">
-                    <i class="fas fa-table text-purple-600 mr-3"></i>
+                <h3 class="text-xl font-display font-bold text-white flex items-center">
+                    <i class="fas fa-table text-accent-purple mr-3"></i>
                     Matriks Perbandingan Kriteria
                 </h3>
-                <button onclick="loadDefaultData()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                <button onclick="loadDefaultData()" class="luxury-button-secondary">
                     <i class="fas fa-download mr-2"></i>
                     Muat Data Default
                 </button>
@@ -222,15 +211,14 @@
                 <table id="criteriaMatrix" class="w-full border-collapse">
                     <!-- Matrix will be populated by JavaScript -->
                 </table>
-            </div>
-            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
-                <h4 class="font-semibold text-blue-800 mb-2">Skala Perbandingan AHP:</h4>
+            </div>            <div class="mt-4 luxury-info-box">
+                <h4 class="font-semibold text-accent-blue mb-2">Skala Perbandingan AHP:</h4>
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
-                    <div class="text-center"><span class="font-bold">1</span> - Sama penting</div>
-                    <div class="text-center"><span class="font-bold">3</span> - Sedikit lebih penting</div>
-                    <div class="text-center"><span class="font-bold">5</span> - Lebih penting</div>
-                    <div class="text-center"><span class="font-bold">7</span> - Sangat penting</div>
-                    <div class="text-center"><span class="font-bold">9</span> - Mutlak lebih penting</div>
+                    <div class="text-center"><span class="font-bold text-white">1</span> - <span class="text-primary-light">Sama penting</span></div>
+                    <div class="text-center"><span class="font-bold text-white">3</span> - <span class="text-primary-light">Sedikit lebih penting</span></div>
+                    <div class="text-center"><span class="font-bold text-white">5</span> - <span class="text-primary-light">Lebih penting</span></div>
+                    <div class="text-center"><span class="font-bold text-white">7</span> - <span class="text-primary-light">Sangat penting</span></div>
+                    <div class="text-center"><span class="font-bold text-white">9</span> - <span class="text-primary-light">Mutlak lebih penting</span></div>
                 </div>
             </div>
         </div>
@@ -238,39 +226,34 @@
         <!-- Alternative Comparison Matrices -->
         <div id="alternativeMatrices" class="space-y-8 mb-8">
             <!-- Alternative matrices will be populated by JavaScript -->
-        </div>
-
-        <!-- Process Button -->
+        </div>        <!-- Process Button -->
         <div class="text-center mb-8">
-            <button onclick="processAHP()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
+            <button onclick="processAHP()" class="luxury-button-primary text-lg px-8 py-4">
                 <i class="fas fa-calculator mr-3"></i>
                 Proses Perhitungan AHP
             </button>
-        </div>        <!-- Results Section -->
-        <div id="resultsSection" class="hidden space-y-8">
-            <!-- Action Buttons -->
-            <div class="bg-white rounded-xl shadow-lg p-4">
+        </div><!-- Results Section -->
+        <div id="resultsSection" class="hidden space-y-8">            <!-- Action Buttons -->
+            <div class="luxury-card p-4">
                 <div class="flex flex-wrap gap-4 justify-center">
-                    <button onclick="exportResults()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    <button onclick="exportResults()" class="luxury-button bg-accent-green">
                         <i class="fas fa-download mr-2"></i>
                         Ekspor Hasil (JSON)
                     </button>
-                    <button onclick="printResults()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button onclick="printResults()" class="luxury-button bg-accent-blue">
                         <i class="fas fa-print mr-2"></i>
                         Cetak Laporan
                     </button>
                 </div>
             </div>
-            
-            <!-- Criteria Weights -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-chart-pie text-blue-600 mr-3"></i>
+              <!-- Criteria Weights -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-chart-pie text-accent-blue mr-3"></i>
                     Bobot Kriteria
                 </h3>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="overflow-x-auto">
-                        <table id="criteriaWeights" class="w-full border-collapse border border-gray-300">
+                    <div class="overflow-x-auto">                        <table id="criteriaWeights" class="luxury-table w-full">
                             <!-- Criteria weights table will be populated by JavaScript -->
                         </table>
                     </div>
@@ -278,17 +261,14 @@
                         <canvas id="criteriaChart" width="400" height="300"></canvas>
                     </div>
                 </div>
-            </div>
-
-            <!-- Alternative Scores -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-trophy text-yellow-600 mr-3"></i>
+            </div>            <!-- Alternative Scores -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-trophy text-accent-gold mr-3"></i>
                     Skor dan Ranking Alternatif
                 </h3>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="overflow-x-auto">
-                        <table id="finalScores" class="w-full border-collapse border border-gray-300">
+                    <div class="overflow-x-auto">                        <table id="finalScores" class="luxury-table w-full">
                             <!-- Final scores table will be populated by JavaScript -->
                         </table>
                     </div>
@@ -296,25 +276,22 @@
                         <canvas id="scoresChart" width="400" height="300"></canvas>
                     </div>
                 </div>
-            </div>
-
-            <!-- Consistency Check -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-check-circle text-green-600 mr-3"></i>
+            </div>            <!-- Consistency Check -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-accent-green mr-3"></i>
                     Uji Konsistensi
                 </h3>
                 <div id="consistencyResults" class="space-y-4">
                     <!-- Consistency results will be populated by JavaScript -->
                 </div>            </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
+    </div>    <!-- Footer -->
+    <footer class="luxury-footer">
         <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 AHP Decision Support System. Metode Analytical Hierarchy Process untuk Pengambilan Keputusan.</p>
-        </div>    </footer>
+            <p class="text-primary-light">&copy; 2025 AHP Decision Support System. Metode Analytical Hierarchy Process untuk Pengambilan Keputusan.</p>
+        </div>
+    </footer>
     
     <!-- Scripts -->
     <script src="ahp.js"></script>
