@@ -1,0 +1,40 @@
+/* Logo styling for AHP Decision Support System */
+
+/* University Logo */
+.university-logo {
+  transition: all 0.3s ease;
+}
+
+.university-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Logo container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo in header */
+.header-logo {
+  height: 65px;
+  width: auto;
+}
+
+/* Logo in footer */
+.footer-logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Responsive logo sizes */
+@media (max-width: 768px) {
+  .header-logo {
+    height: 55px;
+  }
+  
+  .footer-logo {
+    height: 40px;
+  }
+} 

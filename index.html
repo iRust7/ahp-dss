@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universitas PGRI Semarang - Sistem Pendukung Keputusan AHP</title>
+    <meta name="description" content="Pengaplikasian Metode Analytical Hierarchy Process (AHP) Dalam Pemilihan Lokasi Gudang Penyimpanan Barang Onlineshop (Studi Kasus : Expedisi Pengiriman Barang Jadi)">
+    <meta name="author" content="Tim KL5 - Universitas PGRI Semarang">
+    <link rel="icon" href="src/assets/images/upgris.png" type="image/png">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+      <!-- Custom CSS - Organized Structure -->
+    <link rel="stylesheet" href="src/assets/css/variables.css">
+    <link rel="stylesheet" href="src/assets/css/base.css">
+    <link rel="stylesheet" href="src/assets/css/animations.css">
+    <link rel="stylesheet" href="src/assets/css/layout.css">
+    <link rel="stylesheet" href="src/assets/css/components.css">
+    <link rel="stylesheet" href="src/assets/css/buttons.css">
+    <link rel="stylesheet" href="src/assets/css/luxury-buttons.css">
+    <link rel="stylesheet" href="src/assets/css/inputs.css">
+    <link rel="stylesheet" href="src/assets/css/tables.css">
+    <link rel="stylesheet" href="src/assets/css/matrices.css">
+    <link rel="stylesheet" href="src/assets/css/messages.css">
+    <link rel="stylesheet" href="src/assets/css/progress.css">
+    <link rel="stylesheet" href="src/assets/css/navigation.css">
+    <link rel="stylesheet" href="src/assets/css/features.css">
+    <link rel="stylesheet" href="src/assets/css/footer.css">
+    <link rel="stylesheet" href="src/assets/css/loader.css">
+    <link rel="stylesheet" href="src/assets/css/color-scheme.css">
+    <link rel="stylesheet" href="src/assets/css/icons.css">
+    <link rel="stylesheet" href="src/assets/css/illustrations.css">
+    <link rel="stylesheet" href="src/assets/css/logo.css">
+    <link rel="stylesheet" href="src/assets/css/utils.css">
+    <link rel="stylesheet" href="src/assets/css/main.css">
+</head>
+<body class="luxury-bg">
+    <!-- Lottie Loading Animation -->
+    <div id="lottieLoader" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 backdrop-blur-sm">
+        <div class="text-center">
+            <div id="lottiePageLoadAnimation" class="mx-auto" style="width: 200px; height: 200px;"></div>
+            <div class="text-white mt-4 font-semibold">Loading AHP System...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="luxury-header">
+        <div class="container-limited px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="src/assets/images/upgris.png" alt="Logo Universitas PGRI Semarang" class="university-logo header-logo mr-4">
+                    <div class="header-divider mx-4 hidden md:block"></div>
+                    <div>
+                        <div class="flex items-center">
+                            <h1 class="text-2xl md:text-3xl font-display font-bold text-white">Universitas PGRI Semarang</h1>
+                        </div>
+                        <p class="text-sm md:text-base text-primary-light">Fakultas Teknik dan Informatika – Program Studi Teknik Informatika</p>
+                    </div>
+                </div>
+                <div class="md:block text-right">
+                    <p class="text-sm md:text-lg text-white font-medium leading-relaxed">Pengaplikasian Metode Analytical Hierarchy Process (AHP)</p>
+                    <p class="text-sm md:text-lg text-primary-light font-medium leading-relaxed">Dalam Pemilihan Lokasi Gudang Penyimpanan Barang Onlineshop</p>
+                    <p class="text-xs md:text-sm text-primary-light opacity-80 mt-1">(Studi Kasus : Expedisi Pengiriman Barang Jadi)</p>
+                </div>
+                <button id="mobileMenuToggle" class="md:hidden luxury-button-secondary p-3">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="luxury-mobile-menu hidden md:hidden mt-4">
+                <div class="flex items-center justify-center mb-3">
+                    <img src="src/assets/images/upgris.png" alt="Logo Universitas PGRI Semarang" class="university-logo header-logo mr-3">
+                    <div class="text-center">
+                        <div class="text-md font-display font-bold text-white">Universitas PGRI Semarang</div>
+                        <div class="text-xs text-primary-light">Fakultas Teknik dan Informatika – Program Studi Teknik Informatika</div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <div class="text-sm text-primary-light font-medium leading-relaxed">Pengaplikasian Metode AHP</div>
+                    <div class="text-sm text-primary-light font-medium leading-relaxed">Dalam Pemilihan Lokasi Gudang</div>
+                    <div class="text-xs text-primary-light opacity-80 mt-1">(Studi Kasus : Expedisi Pengiriman Barang Jadi)</div>
+                </div>
+                <div class="mt-4 flex flex-wrap gap-2 justify-center">
+                    <button onclick="scrollToSection('teamSection')" class="luxury-button-sm bg-accent-purple">
+                        <i class="fas fa-users mr-1"></i>
+                        Tim
+                    </button>
+                    <button onclick="scrollToSection('criteriaSection')" class="luxury-button-sm bg-accent-green">
+                        <i class="fas fa-list mr-1"></i>
+                        Kriteria
+                    </button>
+                    <button onclick="scrollToSection('matrixSection')" class="luxury-button-sm bg-accent-blue">
+                        <i class="fas fa-table mr-1"></i>
+                        Matrix
+                    </button>
+                    <button onclick="scrollToSection('resultsSection')" class="luxury-button-sm bg-accent-gold">
+                        <i class="fas fa-chart-bar mr-1"></i>
+                        Hasil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container-limited px-4 py-8">
+        <!-- Team Dashboard - Moved to Top -->
+        <div id="teamSection" class="luxury-card mb-8">
+            <div class="flex items-center justify-center mb-6">
+                <div class="luxury-icon-container">
+                    <i class="fas fa-users text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-display font-bold text-white ml-4">Tim Pengembang</h2>
+            </div>
+            
+            <!-- Adjusted container width and padding -->
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="luxury-team-grid gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="luxury-team-card team-border-animated flex flex-col items-center p-8 rounded-lg bg-opacity-30 backdrop-blur-sm">
+                        <div class="luxury-team-avatar bg-accent-blue/20 w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-lg border-2 border-accent-blue/30 relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-accent-blue/20 to-transparent rounded-full"></div>
+                            <i class="fas fa-user text-3xl text-accent-blue/90 relative z-10"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-white text-lg mb-2">Moh Nurul Haq</h3>
+                        <p class="text-accent-blue font-semibold mb-3">NPM: 23670138</p>
+                        <div class="mt-2 text-sm text-primary-light flex items-center">
+                            <i class="fas fa-code mr-2"></i>KL5
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="luxury-team-card team-border-animated flex flex-col items-center p-8 rounded-lg bg-opacity-30 backdrop-blur-sm">
+                        <div class="luxury-team-avatar bg-accent-green/20 w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-lg border-2 border-accent-green/30 relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-accent-green/20 to-transparent rounded-full"></div>
+                            <i class="fas fa-user text-3xl text-accent-green/90 relative z-10"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-white text-lg mb-2">Leo Aditiya H.</h3>
+                        <p class="text-accent-green font-semibold mb-3">NPM: 23670103</p>
+                        <div class="mt-2 text-sm text-primary-light flex items-center">
+                            <i class="fas fa-database mr-2"></i>KL5
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="luxury-team-card team-border-animated flex flex-col items-center p-8 rounded-lg bg-opacity-30 backdrop-blur-sm">
+                        <div class="luxury-team-avatar bg-accent-purple/20 w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-lg border-2 border-accent-purple/30 relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-accent-purple/20 to-transparent rounded-full"></div>
+                            <i class="fas fa-user text-3xl text-accent-purple/90 relative z-10"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-white text-lg mb-2">Sinta Nur F.N</h3>
+                        <p class="text-accent-purple font-semibold mb-3">NPM: 23670111</p>
+                        <div class="mt-2 text-sm text-primary-light flex items-center">
+                            <i class="fas fa-chart-line mr-2"></i>KL5
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="luxury-team-card team-border-animated flex flex-col items-center p-8 rounded-lg bg-opacity-30 backdrop-blur-sm">
+                        <div class="luxury-team-avatar bg-accent-gold/20 w-24 h-24 rounded-full flex items-center justify-center mb-6 shadow-lg border-2 border-accent-gold/30 relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-accent-gold/20 to-transparent rounded-full"></div>
+                            <i class="fas fa-user text-3xl text-accent-gold/90 relative z-10"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-white text-lg mb-2">Siti Muawanah</h3>
+                        <p class="text-accent-gold font-semibold mb-3">NPM: 23670099</p>
+                        <div class="mt-2 text-sm text-primary-light flex items-center">
+                            <i class="fas fa-paint-brush mr-2"></i>KL5
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Stats - Adjusted to match team layout -->
+            <div class="max-w-6xl mx-auto px-6 mt-10">
+                <div class="luxury-stats-container p-6 rounded-lg bg-opacity-30 backdrop-blur-sm border border-glass-border">
+                    <div class="luxury-stats-grid gap-8">
+                        <div class="luxury-stat-item text-center p-4">
+                            <div class="luxury-stat-icon bg-accent-blue/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border border-accent-blue/30 relative">
+                                <div class="absolute inset-0 bg-gradient-to-b from-accent-blue/20 to-transparent rounded-full"></div>
+                                <i class="fas fa-users text-2xl text-accent-blue/90 relative z-10"></i>
+                            </div>
+                            <div class="text-2xl font-display font-bold text-accent-blue">4</div>
+                            <div class="text-sm text-primary-light">Anggota Tim</div>
+                        </div>
+                        <div class="luxury-stat-item text-center p-4">
+                            <div class="luxury-stat-icon bg-accent-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border border-accent-green/30 relative">
+                                <div class="absolute inset-0 bg-gradient-to-b from-accent-green/20 to-transparent rounded-full"></div>
+                                <i class="fas fa-calendar-alt text-2xl text-accent-green/90 relative z-10"></i>
+                            </div>
+                            <div class="text-2xl font-display font-bold text-accent-green">2025</div>
+                            <div class="text-sm text-primary-light">Tahun Akademik</div>
+                        </div>
+                        <div class="luxury-stat-item text-center p-4">
+                            <div class="luxury-stat-icon bg-accent-purple/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border border-accent-purple/30 relative">
+                                <div class="absolute inset-0 bg-gradient-to-b from-accent-purple/20 to-transparent rounded-full"></div>
+                                <i class="fas fa-brain text-2xl text-accent-purple/90 relative z-10"></i>
+                            </div>
+                            <div class="text-2xl font-display font-bold text-accent-purple">AHP</div>
+                            <div class="text-sm text-primary-light">Metode</div>
+                        </div>
+                        <div class="luxury-stat-item text-center p-4">
+                            <div class="luxury-stat-icon bg-accent-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border border-accent-gold/30 relative">
+                                <div class="absolute inset-0 bg-gradient-to-b from-accent-gold/20 to-transparent rounded-full"></div>
+                                <i class="fas fa-sitemap text-2xl text-accent-gold/90 relative z-10"></i>
+                            </div>
+                            <div class="text-2xl font-display font-bold text-accent-gold">DSS</div>
+                            <div class="text-sm text-primary-light">Sistem</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AHP Information & Overview Section -->
+        <div class="luxury-card mb-8">
+            <div class="flex items-center justify-center mb-6">
+                <div class="luxury-icon-container">
+                    <i class="fas fa-brain text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-display font-bold text-white ml-4">Tentang AHP</h2>
+            </div>
+
+            <!-- Hero Section with AHP Overview -->
+            <div class="luxury-hero-section mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Main Introduction -->
+                    <div class="luxury-card">
+                        <div class="flex items-start space-x-4 mb-6">
+                            <div class="luxury-icon-container">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h2 class="text-2xl font-display font-bold text-white mb-3">Analytical Hierarchy Process (AHP)</h2>
+                                <p class="text-primary-light leading-relaxed mb-4">
+                                    AHP adalah metode pengambilan keputusan multi-kriteria yang dikembangkan oleh Thomas L. Saaty pada tahun 1970. 
+                                    Metode ini membantu pengambilan keputusan dengan menguraikan masalah kompleks menjadi hierarki yang sederhana.
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="luxury-feature-item">
+                                        <i class="fas fa-chart-line text-accent-blue mr-3"></i>
+                                        <span class="text-white font-semibold">Analisis Sistematis</span>
+                                    </div>
+                                    <div class="luxury-feature-item">
+                                        <i class="fas fa-balance-scale text-accent-green mr-3"></i>
+                                        <span class="text-white font-semibold">Perbandingan Berpasangan</span>
+                                    </div>
+                                    <div class="luxury-feature-item">
+                                        <i class="fas fa-check-double text-accent-purple mr-3"></i>
+                                        <span class="text-white font-semibold">Uji Konsistensi</span>
+                                    </div>
+                                    <div class="luxury-feature-item">
+                                        <i class="fas fa-trophy text-accent-gold mr-3"></i>
+                                        <span class="text-white font-semibold">Ranking Alternatif</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AHP Process Steps -->
+                    <div class="luxury-card">
+                        <h3 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-list-ol text-accent-blue mr-3"></i>
+                            Tahapan Proses AHP
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="luxury-step-item">
+                                <div class="luxury-step-number">1</div>
+                                <div class="text-sm">
+                                    <div class="text-white font-semibold">Struktur Hierarki</div>
+                                    <div class="text-primary-light">Definisi tujuan, kriteria, dan alternatif</div>
+                                </div>
+                            </div>
+                            <div class="luxury-step-item">
+                                <div class="luxury-step-number">2</div>
+                                <div class="text-sm">
+                                    <div class="text-white font-semibold">Perbandingan Kriteria</div>
+                                    <div class="text-primary-light">Matriks perbandingan berpasangan</div>
+                                </div>
+                            </div>
+                            <div class="luxury-step-item">
+                                <div class="luxury-step-number">3</div>
+                                <div class="text-sm">
+                                    <div class="text-white font-semibold">Perhitungan Bobot</div>
+                                    <div class="text-primary-light">Eigenvalue dan eigenvector</div>
+                                </div>
+                            </div>
+                            <div class="luxury-step-item">
+                                <div class="luxury-step-number">4</div>
+                                <div class="text-sm">
+                                    <div class="text-white font-semibold">Evaluasi Alternatif</div>
+                                    <div class="text-primary-light">Skor akhir dan ranking</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study Details -->
+            <div class="mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <div class="luxury-icon-container mr-4">
+                                <i class="fas fa-warehouse text-xl"></i>
+                            </div>
+                            <h2 class="text-xl font-display font-bold text-white">Studi Kasus: Pemilihan Lokasi Gudang</h2>
+                        </div>
+                        <p class="text-primary-light leading-relaxed mb-4">
+                            PT. Logistik Nusantara memerlukan lokasi gudang strategis untuk distribusi produk di Jawa Timur. 
+                            Tim manajemen telah mengidentifikasi tiga lokasi potensial dengan karakteristik berbeda.
+                        </p>
+                        
+                        <!-- Alternatives Cards -->
+                        <div class="space-y-3 mb-4">
+                            <div class="luxury-alternative-card">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-accent-blue rounded-full mr-3"></div>
+                                    <div>
+                                        <div class="text-white font-semibold">Safe'n Lock</div>
+                                        <div class="text-sm text-primary-light">Kawasan Industri Surabaya - Zona A</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="luxury-alternative-card">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-accent-green rounded-full mr-3"></div>
+                                    <div>
+                                        <div class="text-white font-semibold">Rungkut Industri</div>
+                                        <div class="text-sm text-primary-light">Kawasan Industri Rungkut - Zona B</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="luxury-alternative-card">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-accent-purple rounded-full mr-3"></div>
+                                    <div>
+                                        <div class="text-white font-semibold">SPILL (Surabaya Logistic)</div>
+                                        <div class="text-sm text-primary-light">Kawasan Pelabuhan Tanjung Perak</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-clipboard-list text-accent-green mr-3"></i>
+                            Kriteria Evaluasi
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="luxury-criteria-card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-accent-blue mr-3"></i>
+                                        <div>
+                                            <div class="text-white font-semibold">Jarak</div>
+                                            <div class="text-sm text-primary-light">Jarak ke pusat distribusi utama</div>
+                                        </div>
+                                    </div>
+                                    <div class="luxury-importance-badge">35%</div>
+                                </div>
+                            </div>
+                            <div class="luxury-criteria-card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-dollar-sign text-accent-green mr-3"></i>
+                                        <div>
+                                            <div class="text-white font-semibold">Biaya</div>
+                                            <div class="text-sm text-primary-light">Biaya sewa dan operasional</div>
+                                        </div>
+                                    </div>
+                                    <div class="luxury-importance-badge">25%</div>
+                                </div>
+                            </div>
+                            <div class="luxury-criteria-card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-building text-accent-purple mr-3"></i>
+                                        <div>
+                                            <div class="text-white font-semibold">Fasilitas</div>
+                                            <div class="text-sm text-primary-light">Kelengkapan infrastruktur</div>
+                                        </div>
+                                    </div>
+                                    <div class="luxury-importance-badge">20%</div>
+                                </div>
+                            </div>
+                            <div class="luxury-criteria-card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-globe text-accent-gold mr-3"></i>
+                                        <div>
+                                            <div class="text-white font-semibold">Posisi Geografis</div>
+                                            <div class="text-sm text-primary-light">Akses transportasi</div>
+                                        </div>
+                                    </div>
+                                    <div class="luxury-importance-badge">12%</div>
+                                </div>
+                            </div>
+                            <div class="luxury-criteria-card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-expand-arrows-alt text-accent-blue mr-3"></i>
+                                        <div>
+                                            <div class="text-white font-semibold">Luas Gudang</div>
+                                            <div class="text-sm text-primary-light">Kapasitas penyimpanan</div>
+                                        </div>
+                                    </div>
+                                    <div class="luxury-importance-badge">8%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AHP Information Panel -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="luxury-info-panel">
+                    <div class="luxury-info-icon bg-accent-blue">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Metode Matematis</h3>
+                    <p class="text-primary-light text-sm">
+                        Menggunakan eigenvalue dan eigenvector untuk menghitung bobot kriteria dan konsistensi matriks perbandingan.
+                    </p>
+                </div>
+                <div class="luxury-info-panel">
+                    <div class="luxury-info-icon bg-accent-green">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Multi-Expert</h3>
+                    <p class="text-primary-light text-sm">
+                        Dapat mengakomodasi penilaian dari multiple expert untuk menghasilkan keputusan yang lebih objektif.
+                    </p>
+                </div>
+                <div class="luxury-info-panel">
+                    <div class="luxury-info-icon bg-accent-purple">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Visualisasi</h3>
+                    <p class="text-primary-light text-sm">
+                        Hasil analisis ditampilkan dalam bentuk grafik dan tabel yang mudah dipahami untuk pengambilan keputusan.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Section with Enhanced Interface -->
+        <div id="criteriaSection" class="space-y-8 mb-8">
+            <!-- Methodology Overview -->
+            <div class="luxury-card">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-display font-bold text-white flex items-center">
+                        <i class="fas fa-cogs text-accent-blue mr-3"></i>
+                        Metodologi AHP
+                    </h3>
+                    <div class="luxury-method-badge">
+                        <i class="fas fa-award mr-2"></i>
+                        Multi-Criteria Decision Analysis
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="luxury-methodology-card">
+                        <div class="luxury-method-icon bg-accent-blue">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">Hierarki Struktur</h4>
+                        <p class="text-primary-light text-sm">
+                            Dekomposisi masalah menjadi tujuan, kriteria, sub-kriteria, dan alternatif
+                        </p>
+                    </div>
+                    
+                    <div class="luxury-methodology-card">
+                        <div class="luxury-method-icon bg-accent-green">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">Pairwise Comparison</h4>
+                        <p class="text-primary-light text-sm">
+                            Perbandingan berpasangan menggunakan skala fundamental Saaty 1-9
+                        </p>
+                    </div>
+                    
+                    <div class="luxury-methodology-card">
+                        <div class="luxury-method-icon bg-accent-purple">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">Eigenvalue Method</h4>
+                        <p class="text-primary-light text-sm">
+                            Perhitungan bobot menggunakan principal eigenvalue dan eigenvector
+                        </p>
+                    </div>
+                    
+                    <div class="luxury-methodology-card">
+                        <div class="luxury-method-icon bg-accent-gold">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="text-white font-semibold mb-2">Consistency Test</h4>
+                        <p class="text-primary-light text-sm">
+                            Validasi konsistensi dengan Consistency Ratio (CR) ≤ 0.1
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Mathematical Formula Display -->
+                <div class="luxury-formula-section">
+                    <h4 class="text-white font-semibold mb-4 flex items-center">
+                        <i class="fas fa-square-root-alt text-accent-purple mr-2"></i>
+                        Formula Matematis Utama
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="luxury-formula-card">
+                            <div class="text-accent-blue font-semibold mb-2">Consistency Index (CI)</div>
+                            <div class="luxury-formula">CI = (λmax - n) / (n - 1)</div>
+                            <div class="text-sm text-primary-light mt-2">
+                                λmax = eigenvalue maksimum, n = ukuran matriks
+                            </div>
+                        </div>
+                        <div class="luxury-formula-card">
+                            <div class="text-accent-green font-semibold mb-2">Consistency Ratio (CR)</div>
+                            <div class="luxury-formula">CR = CI / RI</div>
+                            <div class="text-sm text-primary-light mt-2">
+                                RI = Random Index berdasarkan ukuran matriks
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Management Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Criteria Management -->
+                <div class="luxury-card">
+                    <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-list-ul text-accent-blue mr-3"></i>
+                        Manajemen Kriteria
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-primary-light mb-2">Nama Kriteria</label>
+                            <div id="criteriaList" class="space-y-2">
+                                <!-- Criteria items will be populated by JavaScript -->
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <input type="text" id="newCriteria" placeholder="Tambah kriteria baru..." 
+                                       class="luxury-input flex-1">
+                                <button onclick="addCriteria()" class="luxury-button bg-accent-blue">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alternatives Management -->
+                <div class="luxury-card">
+                    <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-map-marker-alt text-accent-green mr-3"></i>
+                        Manajemen Alternatif
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-primary-light mb-2">Lokasi Alternatif</label>
+                            <div id="alternativesList" class="space-y-2">
+                                <!-- Alternative items will be populated by JavaScript -->
+                            </div>
+                            <div class="mt-3 flex space-x-2">
+                                <input type="text" id="newAlternative" placeholder="Tambah alternatif baru..." 
+                                       class="luxury-input flex-1">
+                                <button onclick="addAlternative()" class="luxury-button bg-accent-green">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Criteria Comparison Matrix -->
+        <div id="matrixSection" class="luxury-card mb-8">            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-display font-bold text-white flex items-center">
+                    <i class="fas fa-table text-accent-purple mr-3"></i>
+                    Matriks Perbandingan Kriteria
+                </h3>
+                <div class="flex space-x-3">
+                    <button onclick="loadDefaultData()" class="luxury-button-secondary">
+                        <i class="fas fa-download mr-2"></i>
+                        Muat Data Default (Konsisten)
+                    </button>
+                    <button onclick="loadDefaultData2()" class="luxury-button-warning">
+                        <i class="fas fa-file-excel mr-2"></i>
+                        Muat Data Excel (Original)
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table id="criteriaMatrix" class="w-full border-collapse">
+                    <!-- Matrix will be populated by JavaScript -->
+                </table>
+            </div>
+            <div class="mt-4 luxury-comparison-scale">
+                <h4 class="font-semibold text-accent-blue mb-4 flex items-center">
+                    <i class="fas fa-ruler text-accent-blue mr-2"></i>
+                    Skala Perbandingan AHP (Fundamental Scale of Saaty)
+                </h4>
+                <div class="luxury-scale-grid">
+                    <div class="luxury-scale-item">
+                        <div class="luxury-scale-number">1</div>
+                        <div class="luxury-scale-description">Sama penting</div>
+                        <div class="text-xs text-primary-light mt-1">Equal importance</div>
+                    </div>
+                    <div class="luxury-scale-item">
+                        <div class="luxury-scale-number">3</div>
+                        <div class="luxury-scale-description">Sedikit lebih penting</div>
+                        <div class="text-xs text-primary-light mt-1">Weak importance</div>
+                    </div>
+                    <div class="luxury-scale-item">
+                        <div class="luxury-scale-number">5</div>
+                        <div class="luxury-scale-description">Lebih penting</div>
+                        <div class="text-xs text-primary-light mt-1">Strong importance</div>
+                    </div>
+                    <div class="luxury-scale-item">
+                        <div class="luxury-scale-number">7</div>
+                        <div class="luxury-scale-description">Sangat penting</div>
+                        <div class="text-xs text-primary-light mt-1">Very strong</div>
+                    </div>
+                    <div class="luxury-scale-item">
+                        <div class="luxury-scale-number">9</div>
+                        <div class="luxury-scale-description">Mutlak lebih penting</div>
+                        <div class="text-xs text-primary-light mt-1">Extreme importance</div>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <span class="luxury-interactive-hint">
+                        <i class="fas fa-lightbulb mr-2"></i>
+                        Nilai 2, 4, 6, 8 dapat digunakan untuk nilai tengah
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alternative Comparison Matrices -->
+        <div id="alternativeMatrices" class="space-y-8 mb-8">
+            <!-- Alternative matrices will be populated by JavaScript -->
+        </div>
+
+        <!-- Real-time Analytics Dashboard -->
+        <div class="luxury-card mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-display font-bold text-white flex items-center">
+                    <i class="fas fa-chart-line text-accent-green mr-3"></i>
+                    Dashboard Analytics
+                </h3>
+                <div class="flex space-x-2">
+                    <span class="luxury-status-badge bg-accent-green">
+                        <i class="fas fa-circle text-xs mr-1"></i>
+                        Real-time
+                    </span>
+                    <span class="luxury-status-badge bg-accent-blue">
+                        <i class="fas fa-database text-xs mr-1"></i>
+                        Active
+                    </span>
+                </div>
+            </div>
+
+            <div class="luxury-stats-enhanced">
+                <div class="luxury-stat-card-enhanced">
+                    <div class="luxury-stat-icon bg-accent-blue mb-3">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="luxury-stat-number" id="totalCriteria">5</div>
+                    <div class="luxury-stat-label">Total Kriteria</div>
+                    <div class="text-xs text-primary-light mt-1">Kriteria evaluasi aktif</div>
+                </div>
+
+                <div class="luxury-stat-card-enhanced">
+                    <div class="luxury-stat-icon bg-accent-green mb-3">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="luxury-stat-number" id="totalAlternatives">3</div>
+                    <div class="luxury-stat-label">Total Alternatif</div>
+                    <div class="text-xs text-primary-light mt-1">Lokasi yang dievaluasi</div>
+                </div>
+
+                <div class="luxury-stat-card-enhanced">
+                    <div class="luxury-stat-icon bg-accent-purple mb-3">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="luxury-stat-number" id="totalComparisons">15</div>
+                    <div class="luxury-stat-label">Perbandingan</div>
+                    <div class="text-xs text-primary-light mt-1">Matriks perbandingan</div>
+                </div>
+
+                <div class="luxury-stat-card-enhanced">
+                    <div class="luxury-stat-icon bg-accent-gold mb-3">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="luxury-stat-number" id="consistencyRatio">0.08</div>
+                    <div class="luxury-stat-label">Consistency Ratio</div>
+                    <div class="text-xs text-accent-green mt-1">✓ Konsisten</div>
+                </div>
+            </div>
+
+            <!-- Process Progress Bar -->
+            <div class="mt-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-primary-light">Progress Evaluasi</span>
+                    <span class="text-sm text-accent-blue font-semibold" id="progressPercentage">0%</span>
+                </div>
+                <div class="luxury-progress-bar">
+                    <div class="luxury-progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="mt-2 text-xs text-primary-light text-center">
+                    Lengkapi semua matriks perbandingan untuk melanjutkan perhitungan
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Button with Enhanced Design -->
+        <div class="text-center mb-8">
+            <div class="luxury-process-section aurora-border">
+                <div class="luxury-process-icon bg-accent-purple mb-4">
+                    <i class="fas fa-play text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-display font-bold text-white mb-3">Siap untuk Memulai Perhitungan?</h3>
+                <p class="text-primary-light mb-4 max-w-md mx-auto">
+                    Pastikan semua matriks perbandingan telah diisi dengan benar sebelum memproses perhitungan AHP
+                </p>
+                <button onclick="processAHP()" class="luxury-button-enhanced text-lg px-8 py-4">
+                    <i class="fas fa-calculator mr-3"></i>
+                    Proses Perhitungan AHP
+                </button>
+                <div class="mt-3 flex justify-center space-x-4 text-sm">
+                    <span class="text-primary-light">
+                        <i class="fas fa-clock mr-1 text-accent-blue"></i>
+                        Estimasi: ~2 detik
+                    </span>
+                    <span class="text-primary-light">
+                        <i class="fas fa-shield-alt mr-1 text-accent-green"></i>
+                        Validasi otomatis
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lottie Calculation Animation Overlay -->
+        <div id="lottieCalcLoader" class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 backdrop-blur-sm hidden">
+            <div class="text-center">
+                <div id="lottieCalcAnimation" class="mx-auto" style="width: 250px; height: 250px;"></div>
+                <div class="text-white mt-4 font-semibold">Memproses Perhitungan AHP...</div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden space-y-8">
+            <!-- Action Buttons -->
+            <div class="luxury-card p-4">
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button onclick="exportResults()" class="luxury-button bg-accent-green">
+                        <i class="fas fa-download mr-2"></i>
+                        Ekspor Hasil (JSON)
+                    </button>
+                    <button onclick="printResults()" class="luxury-button bg-accent-blue">
+                        <i class="fas fa-print mr-2"></i>
+                        Cetak Laporan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Criteria Weights -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-chart-pie text-accent-blue mr-3"></i>
+                    Bobot Kriteria
+                </h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="overflow-x-auto">
+                        <table id="criteriaWeights" class="luxury-table w-full">
+                            <!-- Criteria weights table will be populated by JavaScript -->
+                        </table>
+                    </div>
+                    <div>
+                        <canvas id="criteriaChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Scores -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-trophy text-accent-gold mr-3"></i>
+                    Skor dan Ranking Alternatif
+                </h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="overflow-x-auto">
+                        <table id="finalScores" class="luxury-table w-full">
+                            <!-- Final scores table will be populated by JavaScript -->
+                        </table>
+                    </div>
+                    <div>
+                        <canvas id="scoresChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consistency Check -->
+            <div class="luxury-card">
+                <h3 class="text-xl font-display font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-accent-green mr-3"></i>
+                    Uji Konsistensi
+                </h3>
+                <div id="consistencyResults" class="space-y-4">
+                    <!-- Consistency results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="luxury-footer-enhanced">
+        <div class="container-limited px-4">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+                <!-- About AHP -->
+                <div>
+                    <h4 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-brain text-accent-blue mr-2"></i>
+                        Tentang AHP
+                    </h4>
+                    <p class="text-primary-light text-sm leading-relaxed mb-4">
+                        Analytical Hierarchy Process adalah metode pengambilan keputusan multi-kriteria yang dikembangkan 
+                        oleh Thomas L. Saaty untuk membantu pengambilan keputusan kompleks.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center text-sm text-primary-light">
+                            <i class="fas fa-calendar text-accent-green mr-2"></i>
+                            Dikembangkan: 1970
+                        </div>
+                        <div class="flex items-center text-sm text-primary-light">
+                            <i class="fas fa-user text-accent-purple mr-2"></i>
+                            Pencetus: Thomas L. Saaty
+                        </div>
+                        <div class="flex items-center text-sm text-primary-light">
+                            <i class="fas fa-award text-accent-gold mr-2"></i>
+                            Aplikasi: Multi-Criteria Decision Making
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Keunggulan Metode -->
+                <div>
+                    <h4 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-star text-accent-green mr-2"></i>
+                        Keunggulan Metode
+                    </h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start text-sm text-primary-light">
+                            <i class="fas fa-check text-accent-green mr-2 mt-1 text-xs"></i>
+                            <span>Struktur hierarki yang jelas dan sistematis</span>
+                        </li>
+                        <li class="flex items-start text-sm text-primary-light">
+                            <i class="fas fa-check text-accent-green mr-2 mt-1 text-xs"></i>
+                            <span>Dapat mengukur konsistensi penilaian</span>
+                        </li>
+                        <li class="flex items-start text-sm text-primary-light">
+                            <i class="fas fa-check text-accent-green mr-2 mt-1 text-xs"></i>
+                            <span>Menggabungkan data kualitatif dan kuantitatif</span>
+                        </li>
+                        <li class="flex items-start text-sm text-primary-light">
+                            <i class="fas fa-check text-accent-green mr-2 mt-1 text-xs"></i>
+                            <span>Mudah dipahami dan diimplementasikan</span>
+                        </li>
+                        <li class="flex items-start text-sm text-primary-light">
+                            <i class="fas fa-check text-accent-green mr-2 mt-1 text-xs"></i>
+                            <span>Mendukung pengambilan keputusan kelompok</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Aplikasi AHP -->
+                <div>
+                    <h4 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-cogs text-accent-purple mr-2"></i>
+                        Aplikasi AHP
+                    </h4>
+                    <div class="space-y-3">
+                        <div class="luxury-app-item">
+                            <i class="fas fa-building text-accent-blue mr-2"></i>
+                            <span class="text-sm text-primary-light">Pemilihan Lokasi Bisnis</span>
+                        </div>
+                        <div class="luxury-app-item">
+                            <i class="fas fa-users text-accent-green mr-2"></i>
+                            <span class="text-sm text-primary-light">Seleksi Supplier/Vendor</span>
+                        </div>
+                        <div class="luxury-app-item">
+                            <i class="fas fa-chart-line text-accent-purple mr-2"></i>
+                            <span class="text-sm text-primary-light">Evaluasi Investasi</span>
+                        </div>
+                        <div class="luxury-app-item">
+                            <i class="fas fa-graduation-cap text-accent-gold mr-2"></i>
+                            <span class="text-sm text-primary-light">Penilaian Akademik</span>
+                        </div>
+                        <div class="luxury-app-item">
+                            <i class="fas fa-heart text-accent-blue mr-2"></i>
+                            <span class="text-sm text-primary-light">Sistem Kesehatan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tim Pengembang & Referensi -->
+                <div>
+                    <h4 class="text-lg font-display font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-users text-accent-gold mr-2"></i>
+                        Tim Pengembang
+                    </h4>
+                    <div class="space-y-2 mb-4">
+                        <div class="text-sm text-primary-light">Kelas KL5 - Sistem Pendukung Keputusan</div>
+                        <div class="text-sm text-primary-light">Universitas PGRI Semarang</div>
+                        <div class="text-sm text-primary-light">Tahun Akademik 2024/2025</div>
+                    </div>
+
+                    <h5 class="text-sm font-semibold text-white mb-2">Referensi Utama:</h5>
+                    <div class="space-y-1">
+                        <div class="text-xs text-primary-light">Saaty, T.L. (1980). The Analytic Hierarchy Process</div>
+                        <div class="text-xs text-primary-light">Saaty, T.L. (2008). Decision making with the analytic hierarchy process</div>
+                        <div class="text-xs text-primary-light">Brunelli, M. (2014). Introduction to the Analytic Hierarchy Process</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-glass-border py-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                        <img src="src/assets/images/upgris.png" alt="Logo Universitas PGRI Semarang" class="university-logo footer-logo">
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold">Universitas PGRI Semarang</div>
+                            <div class="text-xs text-primary-light">Fakultas Teknik dan Informatika – Program Studi Teknik Informatika</div>
+                            <div class="text-sm text-primary-light mt-1">Pengaplikasian Metode AHP</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4">
+                        <div class="text-sm text-primary-light text-center md:text-right">
+                            © 2025 Tim KL5 - Universitas PGRI Semarang<br>
+                            Implementasi Metode AHP
+                        </div>
+                        <div class="flex space-x-2">
+                            <div class="luxury-tech-badge">
+                                <i class="fab fa-html5 mr-1"></i>
+                                HTML5
+                            </div>
+                            <div class="luxury-tech-badge">
+                                <i class="fab fa-css3-alt mr-1"></i>
+                                CSS3
+                            </div>
+                            <div class="luxury-tech-badge">
+                                <i class="fab fa-js-square mr-1"></i>
+                                JavaScript
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript - Organized Structure -->
+    <script src="src/assets/js/ahp-calculator.js"></script>
+    <script src="src/assets/js/ui-controller.js"></script>
+</body>
+</html>

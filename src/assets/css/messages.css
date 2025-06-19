@@ -1,0 +1,163 @@
+/* Tooltip and Message Styling */
+.input-tooltip {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  padding: var(--space-xs) var(--space-sm);
+  box-shadow: var(--shadow-md);
+  z-index: 50;
+  animation: tooltipFadeIn 0.3s ease;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.message-error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.message-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold-light);
+}
+
+.message-success {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green-light);
+}
+
+.message-info {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue-light);
+}
+
+/* Message styling */
+.message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid;
+    animation: slideIn 0.3s ease;
+}
+
+.message-success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border-color: #10b981;
+}
+
+.message-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border-color: #ef4444;
+}
+
+.message-info {
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-color: #3b82f6;
+}
+
+/* Floating Message Enhanced */
+.floating-message {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xl);
+}
+
+.floating-message.bg-green-100 {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green-light);
+}
+
+.floating-message.bg-red-100 {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
+  color: #fca5a5;
+}
+
+.floating-message.bg-yellow-100 {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold-light);
+}
+
+.floating-message.bg-blue-100 {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue-light);
+}
+
+/* Success/Error States */
+.luxury-success-state {
+  background: linear-gradient(135deg, var(--accent-green), rgba(16, 185, 129, 0.8));
+  color: white;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin: var(--space-sm) 0;
+}
+
+.luxury-error-state {
+  background: linear-gradient(135deg, #ef4444, rgba(239, 68, 68, 0.8));
+  color: white;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin: var(--space-sm) 0;
+}
+
+.luxury-warning-state {
+  background: linear-gradient(135deg, var(--accent-gold), rgba(245, 158, 11, 0.8));
+  color: white;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin: var(--space-sm) 0;
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #374151;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

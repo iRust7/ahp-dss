@@ -1,0 +1,203 @@
+/* Layout and Grid System */
+
+/* Grid Systems */
+.luxury-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  max-width: none;
+}
+
+.luxury-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  text-align: center;
+  margin: var(--space-lg) 0;
+  max-width: none;
+}
+
+.luxury-stats-enhanced {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  max-width: none;
+}
+
+.luxury-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  max-width: none;
+}
+
+.luxury-scale-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* Hero Section Layout */
+.luxury-hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.luxury-hero-section .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: none;
+}
+
+@media (min-width: 1024px) {
+  .luxury-hero-section .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.luxury-hero-section .luxury-card {
+  height: fit-content;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.luxury-hero-section .luxury-card > div {
+  flex: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .luxury-stats-enhanced {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  
+  .luxury-scale-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .luxury-data-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  
+  .luxury-team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Container and Spacing */
+.luxury-stats-container {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+/* Full Width Layout Optimizations */
+.luxury-card {
+  max-width: none;
+  width: 100%;
+}
+
+/* Layout styles for AHP Decision Support System */
+
+/* Container constraints */
+.container-limited {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* For smaller screens, adjust padding */
+@media (max-width: 1280px) {
+    .container-limited {
+        max-width: 92%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-limited {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 640px) {
+    .container-limited {
+        max-width: 95%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Content section constraints */
+.content-section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Card constraints to prevent stretching */
+.luxury-card {
+    max-width: 100%;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 1.5rem;
+}
+
+/* Table constraints */
+.overflow-x-auto {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Grid item constraints */
+.luxury-team-grid,
+.luxury-stats-grid,
+.luxury-stats-enhanced {
+    max-width: 100%;
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Ensure proper spacing in grid layouts */
+.grid {
+    gap: 1.5rem;
+}
+
+/* Matrix section constraints */
+#matrixSection,
+#alternativeMatrices,
+#resultsSection {
+    max-width: 100%;
+}
+
+/* Ensure proper vertical rhythm */
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* Center align content in mobile view */
+@media (max-width: 768px) {
+    .luxury-card {
+        padding: 1.25rem;
+    }
+    
+    .container-limited {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+
+/* Ensure proper aspect ratio for charts */
+.chart-container {
+    aspect-ratio: 16/9;
+    max-height: 400px;
+    margin: 0 auto;
+}

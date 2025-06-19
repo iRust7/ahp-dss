@@ -1,0 +1,224 @@
+/* Icons and Illustrations for AHP Decision Support System */
+
+/* Icon containers with semantic meanings */
+.icon-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+/* Primary icon - for navigation and main features */
+.icon-container-primary {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Success icon - for positive actions and confirmations */
+.icon-container-success {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Warning icon - for cautions and alerts */
+.icon-container-warning {
+    background-color: rgba(245, 158, 11, 0.15);
+    color: var(--accent-gold);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Danger icon - for errors and critical issues */
+.icon-container-danger {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--accent-red);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Special icon - for unique features */
+.icon-container-special {
+    background-color: rgba(139, 92, 246, 0.15);
+    color: var(--accent-purple);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Icon sizes */
+.icon-xs {
+    font-size: 0.75rem;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-sm {
+    font-size: 0.875rem;
+    width: 32px;
+    height: 32px;
+}
+
+.icon-md {
+    font-size: 1rem;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-lg {
+    font-size: 1.25rem;
+    width: 48px;
+    height: 48px;
+}
+
+.icon-xl {
+    font-size: 1.5rem;
+    width: 56px;
+    height: 56px;
+}
+
+/* Icon with pulse animation for attention */
+.icon-pulse {
+    animation: iconPulse 2s infinite;
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Icon with subtle rotation for loading/processing */
+.icon-spin {
+    animation: iconSpin 1.5s linear infinite;
+}
+
+@keyframes iconSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Feature icons with descriptive text */
+.feature-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.feature-icon-container {
+    flex-shrink: 0;
+    margin-right: 1rem;
+}
+
+.feature-icon-text {
+    flex-grow: 1;
+}
+
+.feature-icon-title {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.feature-icon-description {
+    font-size: 0.875rem;
+    color: var(--color-primary-light);
+}
+
+/* Section dividers with icons */
+.section-divider {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.section-divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.section-divider-icon {
+    margin: 0 1rem;
+}
+
+/* Icon badges - small indicators */
+.icon-badge {
+    position: relative;
+    display: inline-flex;
+}
+
+.icon-badge-indicator {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--accent-red);
+    border: 2px solid var(--color-primary-dark);
+}
+
+/* Icon groups - for multiple related icons */
+.icon-group {
+    display: flex;
+}
+
+.icon-group .icon-container {
+    margin-right: -0.5rem;
+    border: 2px solid var(--color-primary-dark);
+}
+
+/* Criteria icons */
+.criteria-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+}
+
+/* Step indicators with icons */
+.step-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.step-indicator-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--accent-blue);
+    margin-right: 0.75rem;
+    font-weight: 600;
+}
+
+.step-indicator-active .step-indicator-icon {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+.step-indicator-completed .step-indicator-icon {
+    background-color: var(--accent-green);
+    color: white;
+} 

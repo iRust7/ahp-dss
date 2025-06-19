@@ -1,0 +1,66 @@
+/* Footer Styles */
+
+.luxury-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--glass-border);
+  padding: var(--space-xl) 0;
+  margin-top: var(--space-xl);
+}
+
+.luxury-footer-enhanced {
+  background: linear-gradient(180deg, 
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 100%);
+  border-top: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-footer-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    var(--accent-blue), 
+    var(--accent-purple), 
+    var(--accent-green),
+    var(--accent-gold),
+    var(--accent-blue));
+  background-size: 400% 100%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.luxury-app-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  transition: all 0.3s ease;
+}
+
+.luxury-app-item:hover {
+  transform: translateX(4px);
+  color: var(--text-primary);
+}
+
+.luxury-tech-badge {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.luxury-tech-badge:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}

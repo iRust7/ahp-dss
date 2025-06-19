@@ -1,0 +1,123 @@
+/* Matrix table styling */
+.matrix-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.matrix-table th,
+.matrix-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.matrix-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+}
+
+.matrix-table input {
+    width: 80px;
+    padding: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.matrix-table input:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.matrix-table input:focus {
+    transform: scale(1.05);
+    z-index: 10;
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: #eff6ff;
+}
+
+/* Diagonal cells (always 1) */
+.diagonal-cell {
+    background-color: #f3f4f6 !important;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Lower triangle cells (auto-calculated) */
+.auto-cell {
+    background-color: #fef3c7 !important;
+    color: #92400e;
+}
+
+/* Additional styles for AHP system */
+.calculated {
+    background-color: #fef3c7 !important;
+    color: #92400e;
+    font-style: italic;
+}
+
+.diagonal {
+    background-color: #f3f4f6 !important;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Results table styling */
+.results-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    text-align: left;
+}
+
+.results-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #334155;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.results-table tr:hover {
+    background-color: #e2e8f0;
+}
+
+/* Enhanced table styling */
+.enhanced-table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.enhanced-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.enhanced-table td {
+    vertical-align: middle;
+}
+
+.enhanced-table tr:hover {
+    background-color: #f8fafc;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}

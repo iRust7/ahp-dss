@@ -1,0 +1,205 @@
+/* Illustrations and Visual Decorations for AHP Decision Support System */
+
+/* Decorative elements */
+.decorative-line {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 3px;
+    margin: 1rem 0;
+}
+
+.decorative-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0.25rem;
+}
+
+.dot-primary {
+    background-color: var(--accent-blue);
+}
+
+.dot-success {
+    background-color: var(--accent-green);
+}
+
+.dot-warning {
+    background-color: var(--accent-gold);
+}
+
+.dot-danger {
+    background-color: var(--accent-red);
+}
+
+.dot-special {
+    background-color: var(--accent-purple);
+}
+
+/* Card decorations */
+.card-decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decoration-dots {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 10px 10px;
+}
+
+.decoration-lines {
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+}
+
+.decoration-circles {
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+
+/* Section markers */
+.section-marker {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.section-marker-line {
+    width: 30px;
+    height: 3px;
+    border-radius: 3px;
+    margin-right: 0.75rem;
+}
+
+.marker-primary {
+    background-color: var(--accent-blue);
+}
+
+.marker-success {
+    background-color: var(--accent-green);
+}
+
+.marker-warning {
+    background-color: var(--accent-gold);
+}
+
+.marker-danger {
+    background-color: var(--accent-red);
+}
+
+.marker-special {
+    background-color: var(--accent-purple);
+}
+
+/* Visual indicators */
+.indicator-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.indicator-square {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.indicator-triangle {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Gradient backgrounds for sections */
+.gradient-blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+}
+
+.gradient-green {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+}
+
+.gradient-purple {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+}
+
+.gradient-gold {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%);
+}
+
+.gradient-red {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%);
+}
+
+/* Decorative corners */
+.corner-decoration {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+}
+
+.corner-top-left {
+    top: 0;
+    left: 0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+    border-top-left-radius: 8px;
+}
+
+.corner-top-right {
+    top: 0;
+    right: 0;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    border-top-right-radius: 8px;
+}
+
+.corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    border-bottom-left-radius: 8px;
+}
+
+.corner-bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-bottom-right-radius: 8px;
+}
+
+.corner-primary {
+    border-color: var(--accent-blue);
+}
+
+.corner-success {
+    border-color: var(--accent-green);
+}
+
+.corner-warning {
+    border-color: var(--accent-gold);
+}
+
+.corner-danger {
+    border-color: var(--accent-red);
+}
+
+.corner-special {
+    border-color: var(--accent-purple);
+} 

@@ -1,0 +1,235 @@
+/* Color Scheme for AHP Decision Support System 
+ * Menggunakan warna dengan tujuan yang jelas:
+ * - Biru untuk utama/navigasi
+ * - Hijau untuk positif/sukses
+ * - Oranye untuk peringatan
+ * - Merah untuk error
+ * - Ungu untuk fitur spesial
+ * - Gold untuk hasil/ranking
+ */
+
+/* Color Semantic Classes */
+.color-primary {
+    color: var(--accent-blue);
+}
+
+.color-success {
+    color: var(--accent-green);
+}
+
+.color-warning {
+    color: var(--accent-gold);
+}
+
+.color-danger {
+    color: var(--accent-red);
+}
+
+.color-special {
+    color: var(--accent-purple);
+}
+
+/* Background Semantic Classes */
+.bg-primary {
+    background-color: var(--accent-blue);
+}
+
+.bg-success {
+    background-color: var(--accent-green);
+}
+
+.bg-warning {
+    background-color: var(--accent-gold);
+}
+
+.bg-danger {
+    background-color: var(--accent-red);
+}
+
+.bg-special {
+    background-color: var(--accent-purple);
+}
+
+/* Border Semantic Classes */
+.border-primary {
+    border-color: var(--accent-blue);
+}
+
+.border-success {
+    border-color: var(--accent-green);
+}
+
+.border-warning {
+    border-color: var(--accent-gold);
+}
+
+.border-danger {
+    border-color: var(--accent-red);
+}
+
+.border-special {
+    border-color: var(--accent-purple);
+}
+
+/* Status Indicators */
+.status-success {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-left: 3px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.status-warning {
+    background-color: rgba(245, 158, 11, 0.2);
+    border-left: 3px solid var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.status-danger {
+    background-color: rgba(239, 68, 68, 0.2);
+    border-left: 3px solid var(--accent-red);
+    color: var(--accent-red);
+}
+
+.status-info {
+    background-color: rgba(59, 130, 246, 0.2);
+    border-left: 3px solid var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+/* Message Boxes */
+.message-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-left: 4px solid var(--accent-green);
+}
+
+.message-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 4px solid var(--accent-gold);
+}
+
+.message-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-left: 4px solid var(--accent-red);
+}
+
+.message-info {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-left: 4px solid var(--accent-blue);
+}
+
+/* Section Headers */
+.section-header-primary {
+    border-bottom: 2px solid var(--accent-blue);
+}
+
+.section-header-success {
+    border-bottom: 2px solid var(--accent-green);
+}
+
+.section-header-warning {
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.section-header-danger {
+    border-bottom: 2px solid var(--accent-red);
+}
+
+.section-header-special {
+    border-bottom: 2px solid var(--accent-purple);
+}
+
+/* Card Accents */
+.card-accent-primary {
+    border-top: 3px solid var(--accent-blue);
+}
+
+.card-accent-success {
+    border-top: 3px solid var(--accent-green);
+}
+
+.card-accent-warning {
+    border-top: 3px solid var(--accent-gold);
+}
+
+.card-accent-danger {
+    border-top: 3px solid var(--accent-red);
+}
+
+.card-accent-special {
+    border-top: 3px solid var(--accent-purple);
+}
+
+/* Icon Colors */
+.icon-primary {
+    color: var(--accent-blue);
+}
+
+.icon-success {
+    color: var(--accent-green);
+}
+
+.icon-warning {
+    color: var(--accent-gold);
+}
+
+.icon-danger {
+    color: var(--accent-red);
+}
+
+.icon-special {
+    color: var(--accent-purple);
+}
+
+/* Badge Colors */
+.badge-primary {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--accent-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-warning {
+    background-color: rgba(245, 158, 11, 0.2);
+    color: var(--accent-gold);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-danger {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--accent-red);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-special {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--accent-purple);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* Consistency Indicators */
+.consistency-good {
+    color: var(--accent-green);
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.consistency-warning {
+    color: var(--accent-gold);
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.consistency-bad {
+    color: var(--accent-red);
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+} 

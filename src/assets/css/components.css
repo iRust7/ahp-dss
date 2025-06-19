@@ -1,0 +1,296 @@
+/* Modern Luxury Components for AHP Decision Support System */
+
+/* Header */
+.luxury-header {
+  background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* Mobile Menu */
+.luxury-mobile-menu {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Icon Container */
+.luxury-icon-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  color: var(--accent-blue);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.luxury-icon-container:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+/* Cards */
+.luxury-card {
+  background-color: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.luxury-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Team Components */
+.luxury-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.luxury-team-card {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.luxury-team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.luxury-team-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+}
+
+/* Info Panels */
+.luxury-info-panel {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.luxury-info-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.luxury-info-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: white;
+  font-size: 1.25rem;
+}
+
+/* Process Section */
+.luxury-process-section {
+  background-color: rgba(30, 41, 59, 0.7);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.luxury-process-section button {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.luxury-process-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Status badges */
+.luxury-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* App items */
+.luxury-app-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.luxury-app-item:hover {
+  background-color: rgba(30, 41, 59, 0.8);
+}
+
+/* Tech badges */
+.luxury-tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(30, 41, 59, 0.8);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .luxury-team-grid,
+  .luxury-stats-grid,
+  .luxury-stats-enhanced,
+  .luxury-scale-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .luxury-card,
+  .luxury-info-panel,
+  .luxury-methodology-card,
+  .luxury-formula-section,
+  .luxury-comparison-scale,
+  .luxury-process-section {
+    padding: 1.25rem;
+  }
+  
+  .luxury-team-card,
+  .luxury-stat-card-enhanced {
+    padding: 1rem;
+  }
+  
+  .luxury-icon-container,
+  .luxury-info-icon,
+  .luxury-method-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .luxury-process-icon {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Header divider */
+.header-divider {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* List Items for Criteria and Alternatives */
+.luxury-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(30, 41, 59, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+}
+
+.luxury-list-item:hover {
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.luxury-list-item input {
+  transition: all 0.25s ease;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.luxury-list-item input:focus {
+  background: rgba(59, 130, 246, 0.15) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+
+/* Delete Button (X) Styling */
+.remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(225, 29, 72, 0.15);
+  color: rgba(225, 29, 72, 0.8);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 0.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.remove-btn:hover {
+  background-color: rgba(225, 29, 72, 0.25);
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.4);
+}
+
+.remove-btn:active {
+  transform: scale(0.95);
+}
+
+/* Add subtle animation to the buttons */
+.remove-btn i {
+  transition: transform 0.2s ease;
+}
+
+.remove-btn:hover i {
+  transform: rotate(90deg);
+}

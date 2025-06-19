@@ -1,0 +1,303 @@
+/* Matrix and Table Specific Styles */
+
+/* Matrix Table Styles */
+.matrix-table {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(20px);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.matrix-table th {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  padding: var(--space-md) !important;
+  border-bottom: 2px solid var(--accent-blue) !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+}
+
+.matrix-table td {
+  padding: var(--space-sm) !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+
+.matrix-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.matrix-table tr:hover {
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+.matrix-table td:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Luxury Table Enhanced */
+.luxury-table {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(20px) !important;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.luxury-table th {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  padding: var(--space-md) !important;
+  border-bottom: 2px solid var(--accent-blue) !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+}
+
+.luxury-table td {
+  padding: var(--space-sm) !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+
+.luxury-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.luxury-table tr:hover {
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+.luxury-table tbody tr {
+  background: transparent !important;
+}
+
+.luxury-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+/* Enhanced Table Styling */
+.enhanced-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.enhanced-table th {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark)) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  padding: var(--space-sm);
+}
+
+.enhanced-table td {
+  vertical-align: middle;
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  padding: var(--space-sm);
+}
+
+.enhanced-table tr:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+.enhanced-table tbody tr {
+  background: transparent !important;
+}
+
+/* Results Table Styling */
+.results-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.results-table th {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--glass-border) !important;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.results-table td {
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--glass-border) !important;
+  padding: 12px;
+  text-align: left;
+}
+
+.results-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.results-table tr:hover {
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+/* Alternative Matrix Card Styling */
+.alternative-matrix-card {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: var(--space-lg) !important;
+  margin-bottom: var(--space-lg) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Diagonal and Calculated Cells */
+.diagonal-cell, .diagonal {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: var(--accent-blue-light) !important;
+  font-weight: 600;
+}
+
+.auto-cell, .calculated {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: var(--accent-gold-light) !important;
+  font-style: italic;
+}
+
+/* Generic Table Fixes */
+table {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border-collapse: collapse;
+}
+
+table th {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+  padding: var(--space-md) !important;
+  border-bottom: 2px solid var(--accent-blue) !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+}
+
+table td {
+  color: var(--text-secondary) !important;
+  padding: var(--space-sm) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  text-align: center !important;
+  background: transparent !important;
+}
+
+table tr:hover {
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+table, th, td {
+  border-color: var(--glass-border) !important;
+}
+
+/* Comprehensive Table Override */
+.matrix-table *, 
+.luxury-table *, 
+.enhanced-table *,
+table *, 
+td *, 
+th * {
+  background: transparent !important;
+}
+
+table td,
+table th {
+  background: transparent !important;
+  border-color: var(--glass-border) !important;
+}
+
+/* Comparison Scale */
+.luxury-comparison-scale {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  backdrop-filter: blur(20px);
+}
+
+/* Matrix Enhanced */
+.luxury-matrix-enhanced {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  max-width: none;
+  overflow-x: auto;
+}
+
+.luxury-matrix-enhanced table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.luxury-matrix-enhanced th {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  padding: var(--space-sm);
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid var(--glass-border);
+}
+
+.luxury-matrix-enhanced td {
+  padding: var(--space-xs);
+  text-align: center;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+  background: transparent !important;
+}
+
+.luxury-matrix-enhanced td:hover {
+  background: var(--glass-bg) !important;
+}
+
+.luxury-matrix-enhanced input {
+  width: 60px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 4px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.luxury-matrix-enhanced input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  background: var(--bg-tertiary);
+}
